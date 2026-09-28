@@ -1,18 +1,49 @@
-<div align="center">
+<h2 align="center">Audio Editing in the Era of Foundation Models: A Survey</h2>
 
-# 🎧 AudioEditSurvey
+<p align="center">
+  <b>AACL-IJCNLP 2026</b>
+</p>
 
-### Audio Editing in the Era of Foundation Models: A Survey
+<p align="center">
+  Changhao Pan<sup>1,*</sup>, Yifei Fan<sup>1,*</sup>, Fan Zhuo<sup>1,*</sup>, Yifu Chen<sup>1</sup>, Wenxiang Guo<sup>1</sup>,<br/>
+  Yu Zhang<sup>2</sup>, Ruiqi Li<sup>2</sup>, Zhiyuan Zhu<sup>1</sup>, Rui Yang<sup>1</sup>, Shengpeng Ji<sup>3</sup>,<br/>
+  Chenyuhao Wen<sup>1</sup>, Jiayang Xu<sup>1</sup>, Ke Lei<sup>1</sup>, Xiaoda Yang<sup>1</sup>, Jingyu Lu<sup>1</sup>, Zhou Zhao<sup>1,†</sup>
+</p>
 
-[![Survey](https://img.shields.io/badge/Survey-Audio%20Editing-blue)](#)
-[![Paper](https://img.shields.io/badge/Paper-Coming%20Soon-lightgrey)](#)
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+<p align="center">
+  <sup>1</sup>Zhejiang University &nbsp;&middot;&nbsp;
+  <sup>2</sup>ByteDance &nbsp;&middot;&nbsp;
+  <sup>3</sup>Hunyuan Team, Tencent
+</p>
 
-</div>
+<p align="center">
+  <sup>*</sup>Equal contribution &nbsp;&middot;&nbsp;
+  <sup>†</sup>Corresponding author
+</p>
 
----
+<p align="center">
+  <a href="https://arxiv.org/abs/2606.23139"><img src="https://img.shields.io/badge/arXiv-2606.23139-b31b1b.svg" alt="arXiv"></a>
+  <a href="#whats-new"><img src="https://img.shields.io/badge/Venue-AACL--IJCNLP%202026-4b8bbe.svg" alt="AACL-IJCNLP 2026"></a>
+  <a href="https://david-pigeon.github.io/audioeditsurvey_project/"><img src="https://img.shields.io/badge/Project-Page-1f9c5a.svg" alt="Project Page"></a>
+  <a href="https://github.com/MM-Speech/AudioEditSurvey/stargazers"><img src="https://img.shields.io/github/stars/MM-Speech/AudioEditSurvey?style=social" alt="GitHub stars"></a>
+</p>
 
-# Quick Start
+# 🚀 Quick Start
+
+This repository is the official repository for **Audio Editing in the Era of Foundation Models: A Survey**, Which is accepted by **`AACL-IJCNLP 2026`**.
+
+- We establish a unified taxonomy of **acoustic, semantic, and instance editing** across **speech, music, and general audio**, clarifying what each task changes and what it should preserve to support consistent comparisons across editing goals.
+- We review mainstream audio editing techniques through **foundation-model architectures** and **learning paradigms**, covering codec language models, diffusion and flow-matching models, and **training-based and training-free methods**, with an emphasis on their core mechanisms and suitability for different editing scenarios.
+- **(Updated Recently)** We curate **publicly available audio editing models** with links to their **GitHub repositories, project pages, and model weights**, and summarize their supported task categories and key strengths to help readers identify suitable models.
+- **(Updated Recently)** We organize **publicly available datasets, data construction tools, evaluation benchmarks, and metrics** for audio editing, providing links to their project pages and summarizing the audio domains, editing categories, and evaluation dimensions they cover.
+
+# 🔥What's new
+
+- 📦 **[2026/09] This repository has moved to [`MM-Speech/AudioEditSurvey`](https://github.com/MM-Speech/AudioEditSurvey) for better management.**
+- 🏆 **[2026/09] Our paper has been accepted to the AACL-IJCNLP 2026!**
+- 🎉 **[2026/06] We have officially released this survey repository for Audio Editing Models, with the preprint available on [arXiv](https://arxiv.org/abs/2606.23139).**
+
+## Contents
 
 1. [Introduction](#introduction)  
 2. [Scope](#scope)  
@@ -31,15 +62,11 @@
 9. [Citation](#citation)
 10. [Contributing](#contributing)
 
-# 📰 What's New
-
-- **2026.5.18:** The paper and full paper list will be updated soon.
-
 ---
 
 ## 📌 Introduction
 
-This repository maintains the project page and paper list for **AudioEditSurvey: Audio Editing in the Era of Foundation Models**.
+This is the official repository for **[Audio Editing in the Era of Foundation Models: A Survey](https://arxiv.org/abs/2606.23139)**, accepted to **AACL-IJCNLP 2026**. It is maintained by **MM-Speech** and collects papers and resources for foundation-model-based audio editing.
 
 > **Abstract**  
 > Audio editing aims to modify a given synthetic or real-world audio signal to meet users' specific needs. As a promising yet challenging direction in AIGC, it has attracted increasing attention in recent years. With the rapid progress of text-to-audio and text-to-speech generation, powerful audio generation models have become the primary foundation for modern audio editing systems. In this survey, we provide a comprehensive review of foundation-model-based audio editing. We first define the scope of audio editing from a unified perspective and present a detailed taxonomy of existing editing tasks. We then summarize the major foundation-model paradigms for audio editing, and review representative approaches from both training-based and training-free perspectives. In addition, we systematically discuss related resources, including datasets, data construction tools, and evaluation protocols. Finally, we identify open challenges in this field and outline promising directions for future research.
