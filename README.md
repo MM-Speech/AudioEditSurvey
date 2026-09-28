@@ -56,6 +56,7 @@ This repository is the official repository for **Audio Editing in the Era of Fou
 6. [Training-free Audio Editing](#training-free-audio-editing)  
 7. [Resources](#resources)  
    - [Available Datasets](#available-datasets)  
+     - [Speech](#speech) · [Music](#music) · [Audio](#audio) · [Unified](#unified)
    - [Data Tools](#data-tools)  
    - [Evaluation Protocols and Benchmarks](#evaluation-protocols-and-benchmarks)  
 8. [Systemization Challenges and Future Directions](#systemization-challenges-and-future-directions)  
@@ -195,9 +196,82 @@ Training-free approaches adapt pretrained audio generative models to editing wit
 
 ---
 
+<a id="resources"></a>
+
 ## 📦 Resources
 
+### Available Datasets
 
+Public datasets for audio editing and controllable audio generation, grouped by their primary audio domain.
+
+**Paired** indicates released source–target audio, mixture–stem correspondence, or explicitly matched parallel takes (✅ / ❌); audio–text or audio–MIDI alignment alone does not count. **†** marks an editing use that requires task construction or adaptation, rather than native editing supervision. Editing types follow our **Acoustic / Instance / Semantic** taxonomy.
+
+Durations are approximate, without adding together alternate modalities or mixture stems. **Text** refers to transcripts, captions or instructions; label-only metadata are described in **Annotation**.
+
+#### Speech
+
+| Name | Paper | Dataset / Code | Duration | Paired | Editing Types | Annotation | Modalities |
+|---|---|---|---|---|---|---|---|
+| VoiceBank+DEMAND | <a href="https://www.isca-archive.org/interspeech_2016/valentinibotinhao16_interspeech.html"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://datashare.ed.ac.uk/handle/10283/2791"><img height="20" src="https://img.shields.io/badge/DataShare-Data-2E8B57" alt="DataShare Data"></a> | ≈10 h | ✅ Noisy/clean | Acoustic | Transcript; noise/SNR conditions | Audio, Text |
+| LibriTTS-R | <a href="https://arxiv.org/abs/2305.18802"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://www.openslr.org/141/"><img height="20" src="https://img.shields.io/badge/OpenSLR-Restored-2E8B57" alt="OpenSLR Restored"></a><br><a href="https://www.openslr.org/60/"><img height="20" src="https://img.shields.io/badge/OpenSLR-Original-2E8B57" alt="OpenSLR Original"></a> | ≈585 h | ✅ Original/restored | Acoustic; Semantic† | Transcript; speaker labels; model-restored audio | Audio, Text |
+| LibriSpeech | <a href="https://doi.org/10.1109/ICASSP.2015.7178964"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://www.openslr.org/12/"><img height="20" src="https://img.shields.io/badge/OpenSLR-Data-2E8B57" alt="OpenSLR Data"></a> | ≈1,000 h | ❌ | Semantic†; Instance† | Transcript; speaker/chapter labels | Audio, Text |
+| VCTK v0.92 | <a href="https://doi.org/10.7488/ds/2645"><img height="20" src="https://img.shields.io/badge/Dataset-Record-brightgreen" alt="Dataset Record"></a> | <a href="https://datashare.ed.ac.uk/handle/10283/3443"><img height="20" src="https://img.shields.io/badge/DataShare-Data-2E8B57" alt="DataShare Data"></a> | ≈44 h | ❌ | Instance†; Semantic† | Transcript; speaker/accent labels | Audio, Text |
+| AISHELL-3 | <a href="https://arxiv.org/abs/2010.11567"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://www.openslr.org/93/"><img height="20" src="https://img.shields.io/badge/OpenSLR-Data-2E8B57" alt="OpenSLR Data"></a> | ≈85 h | ❌ | Semantic†; Instance† | Mandarin transcript; phonetic transcription; speaker labels | Audio, Text |
+| Hi-Fi TTS | <a href="https://arxiv.org/abs/2104.01497"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://www.openslr.org/109/"><img height="20" src="https://img.shields.io/badge/OpenSLR-Data-2E8B57" alt="OpenSLR Data"></a> | ≈292 h | ❌ | Semantic†; Instance† | Transcript; speaker labels | Audio, Text |
+| LJSpeech v1.1 | <a href="https://keithito.com/LJ-Speech-Dataset/"><img height="20" src="https://img.shields.io/badge/Dataset-Release-brightgreen" alt="Dataset Release"></a> | <a href="https://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈24 h | ❌ | Semantic† | Transcript; normalized text | Audio, Text |
+| RAVDESS (speech) | <a href="https://doi.org/10.1371/journal.pone.0196391"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://zenodo.org/records/1188976"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈1.7 h | ❌ | Semantic† | Label: emotion, intensity, speaker; fixed transcripts | Audio, Text, Video |
+| CREMA-D | <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4313618/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/CheyneyComputerScience/CREMA-D"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://gitlab.com/cs-cooper-lab/crema-d-mirror"><img height="20" src="https://img.shields.io/badge/GitLab-Mirror-FC6D26?logo=gitlab&amp;logoColor=white" alt="GitLab Mirror"></a> | ≈5.3 h | ❌ | Semantic† | Label: emotion/intensity; perceptual ratings; fixed transcripts | Audio, Text, Video |
+
+#### Music
+
+| Name | Paper | Dataset / Code | Duration | Paired | Editing Types | Annotation | Modalities |
+|---|---|---|---|---|---|---|---|
+| GTSinger | <a href="https://arxiv.org/abs/2409.13832"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/GTSinger/GTSinger"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://huggingface.co/datasets/AaronZ345/GTSinger"><img height="20" src="https://img.shields.io/badge/HuggingFace-Dataset-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Dataset"></a><br><a href="https://drive.google.com/drive/folders/1xcdvCxNAEEfJElt7sEP-xT8dMKxn1_Lz"><img height="20" src="https://img.shields.io/badge/Google_Drive-Data-4285F4?logo=googledrive&amp;logoColor=white" alt="Google Drive Data"></a> | ≈80.6 h singing<br>+16.2 h speech | ✅ Controlled/parallel takes | Semantic; Instance† | Label: technique/style; aligned lyrics/phonemes; scores | Audio, Text, MusicXML |
+| Slakh2100 | <a href="https://arxiv.org/abs/1909.08494"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ethman/slakh-utils"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://zenodo.org/records/4599666"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈145 h | ✅ Mixture/stems | Instance | Label: instrument; aligned MIDI; stem metadata | Audio, MIDI |
+| MUSDB18-HQ | <a href="https://arxiv.org/abs/1804.06267"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/sigsep/sigsep-mus-db"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://zenodo.org/records/3338373"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈10 h | ✅ Mixture/stems | Instance | Label: vocals, drums, bass, other | Audio |
+| MAESTRO v3 | <a href="https://arxiv.org/abs/1810.12247"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://magenta.tensorflow.org/datasets/maestro"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a><br><a href="https://storage.googleapis.com/magentadata/datasets/maestro/v3.0.0/maestro-v3.0.0.zip"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈199 h | ❌ | Semantic† | Aligned MIDI: pitch, timing, velocity, pedals; piece metadata | Audio, MIDI |
+| NSynth | <a href="https://arxiv.org/abs/1704.01279"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://magenta.tensorflow.org/datasets/nsynth"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a> | ≈340 h | ❌ | Instance†; Semantic† | Label: instrument, pitch, velocity, timbral qualities | Audio |
+| Groove MIDI Dataset | <a href="https://arxiv.org/abs/1905.06118"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://magenta.tensorflow.org/datasets/groove"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a><br><a href="https://storage.googleapis.com/magentadata/datasets/groove/groove-v1.0.0.zip"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈13.6 h | ❌ | Semantic† | Aligned MIDI; tempo/style labels; performance timing/velocity | Audio, MIDI |
+| MusicCaps‡ | <a href="https://arxiv.org/abs/2301.11325"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/datasets/google/MusicCaps"><img height="20" src="https://img.shields.io/badge/HuggingFace-Metadata-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Metadata"></a> | ≈15.3 h | ❌ | Semantic†; Instance† | Caption; musical aspect labels | Audio, Text |
+| MTG-Jamendo | <a href="https://repositori.upf.edu/handle/10230/42015"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/MTG/mtg-jamendo-dataset"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://github.com/MTG/mtg-jamendo-dataset#downloading-the-data"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈3,770 h | ❌ | Semantic†; Instance† | Label: genre, instrument, mood/theme | Audio |
+| FMA (large) | <a href="https://arxiv.org/abs/1612.01840"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/mdeff/fma"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://os.unil.cloud.switch.ch/fma/fma_large.zip"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈888 h | ❌ | Semantic† | Label: genre hierarchy; track/artist metadata | Audio |
+
+#### Audio
+
+| Name | Paper | Dataset / Code | Duration | Paired | Editing Types | Annotation | Modalities |
+|---|---|---|---|---|---|---|---|
+| FUSS | <a href="https://arxiv.org/abs/2011.00803"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/google-research/sound-separation/tree/master/datasets/fuss"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://zenodo.org/records/3743844"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈61 h mixtures | ✅ Mixture/sources; dry/reverberant | Instance; Acoustic | Label/source metadata; event timing; mixing parameters | Audio |
+| AudioSet‡ | <a href="https://research.google/pubs/audio-set-an-ontology-and-human-labeled-dataset-for-audio-events/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://research.google.com/audioset/download.html"><img height="20" src="https://img.shields.io/badge/Dataset-Metadata-007EC6" alt="Dataset Metadata"></a> | ≈5,790 h | ❌ | Instance† | Label: sound-event ontology; clip-level multi-labels | Audio, Video (upstream) |
+| AudioCaps v1‡ | <a href="https://aclanthology.org/N19-1011/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/cdjkim/audiocaps/tree/master/dataset"><img height="20" src="https://img.shields.io/badge/GitHub-Metadata-181717?logo=github&amp;logoColor=white" alt="GitHub Metadata"></a> | ≈143 h | ❌ | Instance†; Semantic† | Caption: one or five descriptions per clip | Audio, Text |
+| Clotho v2.1 | <a href="https://arxiv.org/abs/1910.09387"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://zenodo.org/records/4783391"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈37 h<br>(5,929 labeled clips) | ❌ | Instance†; Semantic† | Caption: five per clip; Freesound keywords | Audio, Text |
+| WavCaps | <a href="https://arxiv.org/abs/2303.17395"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/XinhaoMei/WavCaps"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://huggingface.co/datasets/cvssp/WavCaps"><img height="20" src="https://img.shields.io/badge/HuggingFace-Dataset-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Dataset"></a> | ≈7,568 h | ❌ | Instance†; Semantic† | LLM-assisted captions; source descriptions/metadata | Audio, Text |
+| FSD50K | <a href="https://arxiv.org/abs/2010.00475"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://zenodo.org/records/4060432"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈108 h | ❌ | Instance† | Label: 200 sound-event classes; clip-level multi-labels | Audio |
+| ESC-50 | <a href="https://doi.org/10.1145/2733373.2806390"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/karolpiczak/ESC-50"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | ≈2.8 h | ❌ | Instance† | Label: 50 environmental sound classes | Audio |
+| UrbanSound8K | <a href="https://doi.org/10.1145/2647868.2655045"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://urbansounddataset.weebly.com/urbansound8k.html"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a><br><a href="https://zenodo.org/records/1203745"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈8.8 h | ❌ | Instance† | Label: 10 urban sound classes; salience; source timestamps | Audio |
+| VGGSound‡ | <a href="https://arxiv.org/abs/2004.14368"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/hche11/VGGSound/tree/master/data"><img height="20" src="https://img.shields.io/badge/GitHub-Metadata-181717?logo=github&amp;logoColor=white" alt="GitHub Metadata"></a> | ≈550 h | ❌ | Instance† | Label: audio-visual event class; video timestamps | Audio, Video (upstream) |
+
+#### Unified
+
+These corpora combine speech, music, and general sounds.
+
+| Name | Paper | Dataset / Code | Duration | Paired | Editing Types | Annotation | Modalities |
+|---|---|---|---|---|---|---|---|
+| AudioEdit (Audio-Omni) | <a href="https://arxiv.org/abs/2604.10708"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ZeyueT/Audio-Omni"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://huggingface.co/datasets/HKUSTAudio/AudioEdit"><img height="20" src="https://img.shields.io/badge/HuggingFace-Dataset-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Dataset"></a> | ≈2,686 h*<br>(966,794 task pairs) | ✅ Source/edited target | Instance | Instruct: add, remove, extract, source transformation | Audio, Text |
+| Divide and Remaster v2 | <a href="https://arxiv.org/abs/2110.09958"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/darius522/dnr-utils"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://zenodo.org/records/6949108"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈81 h | ✅ Mixture/stems | Instance | Transcript; music genre; sound labels/timestamps | Audio, Text |
+| MUSAN | <a href="https://arxiv.org/abs/1510.08484"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://www.openslr.org/17/"><img height="20" src="https://img.shields.io/badge/OpenSLR-Data-2E8B57" alt="OpenSLR Data"></a> | ≈109 h | ❌ | Acoustic†; Instance† | Label: speech/music/noise; speech and music metadata | Audio |
+
+<details>
+<summary>Availability and duration notes</summary>
+
+- **‡ Linked-media resources:** AudioSet, AudioCaps, MusicCaps and VGGSound release public annotations and source-video identifiers. Audio availability depends on the upstream videos; the listed durations are nominal corpus sizes. [VGGSound's website](https://www.robots.ox.ac.uk/~vgg/data/vggsound/) no longer serves dataset downloads, but its official GitHub metadata remain available. AudioCaps' bulk media archive requires a separate request.
+- **\* AudioEdit:** the public [editing metadata](https://huggingface.co/datasets/HKUSTAudio/AudioEdit/blob/main/meta_total.jsonl) contain 515,664 add/remove/extract records, and the [transformation metadata](https://huggingface.co/datasets/HKUSTAudio/AudioEdit/blob/main/meta_transfer.jsonl) contain 451,130 records. The duration estimate uses 966,794 task pairs × approximately 10 seconds; repeated inputs across tasks are counted per pair. This is the released manifest scale, rather than the paper's larger reported training scale. Its source-changing “style transfer” instructions are mapped to **Instance** editing under our taxonomy.
+- **Duration estimates:** Clotho uses 5,929 labeled clips × approximately 22.5 seconds. VoiceBank+DEMAND, RAVDESS and CREMA-D are rounded from the public audio-file metadata; RAVDESS here includes its speech recordings. MAESTRO uses v3 metadata; MTG-Jamendo uses the 55,609-track autotagging collection; FMA uses the 30-second **large** release.
+- **Publication records:** VCTK and LJSpeech link to their dataset records/releases in the Paper column. All datasets retain their original usage terms.
+- **Release check (2026-09-29):** [AuK](https://github.com/Tencent-Hunyuan/AuK) provides code and model weights, but we could not verify a public training-corpus download, so it is not listed here.
+
+</details>
+
+<a id="data-tools"></a>
 
 ### 🛠️ Data Tools
 
@@ -316,7 +390,18 @@ Training-free approaches adapt pretrained audio generative models to editing wit
   </tbody>
 </table>
 
+<a id="evaluation-protocols-and-benchmarks"></a>
+
 ### 📏 Evaluation Protocols and Benchmarks
+
+#### Editing Benchmarks
+
+| Benchmark | Domain | Size | Paper | Dataset / Code | Annotation |
+|---|---|---|---|---|---|
+| SpeechEditBench v1.1 | Speech | 4,700 cases; ≈9.4 h | <a href="https://arxiv.org/abs/2606.01804"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/daxintan-cuhk/SpeechEditBench"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://huggingface.co/datasets/DiscreteSpeech/SpeechEditBench/tree/v1.1"><img height="20" src="https://img.shields.io/badge/HuggingFace-Dataset-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Dataset"></a> | Edit instructions; task anchors; transcripts; acoustic target references for a subset |
+| MMAE | Unified | 2,000 cases; ≈8.0 h | <a href="https://arxiv.org/abs/2606.07229"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ddlBoJack/MMAE"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://huggingface.co/datasets/BoJack/MMAE"><img height="20" src="https://img.shields.io/badge/HuggingFace-Dataset-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Dataset"></a> | Edit instructions; 17,741 evaluation rubrics; no edited target audio |
+
+#### Evaluation Metrics
 
 <table>
   <thead>
