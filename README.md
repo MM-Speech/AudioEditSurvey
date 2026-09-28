@@ -29,6 +29,7 @@
    - [Evaluation Protocols and Benchmarks](#evaluation-protocols-and-benchmarks)  
 8. [Systemization Challenges and Future Directions](#systemization-challenges-and-future-directions)  
 9. [Citation](#citation)
+10. [Contributing](#contributing)
 
 # 📰 What's New
 
@@ -426,15 +427,24 @@ Foundation-model-based audio editing still faces several system-level challenges
 
 ---
 
-## 📝 Citation
+## Citation
 
-If you find this survey useful, please consider citing our paper.
+If You find this survey or repository useful, please cite our paper:
 
+```bibtex
+@article{pan2026audio,
+  title={Audio Editing in the Era of Foundation Models: A Survey},
+  author={Pan, Changhao and Fan, Yifei and Zhuo, Fan and Chen, Yifu and Guo, Wenxiang and Zhang, Yu and Li, Ruiqi and Zhu, Zhiyuan and Yang, Rui and Ji, Shengpeng and others},
+  journal={arXiv preprint arXiv:2606.23139},
+  year={2026}
+}
+```
 
+## Contributing
+
+This repo is meant to keep growing. If a full-duplex model, dataset, or benchmark is missing, please feel free to open an [issue](https://github.com/MM-Speech/AudioEditSurvey/issues) or a pull request.
 
 ---
-
-
 
 ## 📄 License
 
