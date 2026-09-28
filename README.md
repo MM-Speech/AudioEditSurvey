@@ -33,9 +33,9 @@
 This repository is the official repository for **Audio Editing in the Era of Foundation Models: A Survey**, Which is accepted by **`AACL-IJCNLP 2026`**.
 
 - We establish a unified taxonomy of **acoustic, semantic, and instance editing** across **speech, music, and general audio**, clarifying what each task changes and what it should preserve to support consistent comparisons across editing goals.
-- We review mainstream audio editing techniques through **foundation-model architectures** and **learning paradigms**, covering codec language models, diffusion and flow-matching models, and **training-based and training-free methods**, with an emphasis on their core mechanisms and suitability for different editing scenarios.
-- **(Updated Recently)** We curate **publicly available audio editing models** with links to their **GitHub repositories, project pages, and model weights**, and summarize their supported task categories and key strengths to help readers identify suitable models.
-- **(Updated Recently)** We organize **publicly available datasets, data construction tools, evaluation benchmarks, and metrics** for audio editing, providing links to their project pages and summarizing the audio domains, editing categories, and evaluation dimensions they cover.
+- We review mainstream audio editing techniques through **foundation-model architectures** and **learning paradigms**, with an emphasis on their core mechanisms and suitability for different editing scenarios.
+- **(Updated Recently)** We curate **publicly available audio editing models**, and summarize their supported task categories and key strengths to help readers identify suitable models.
+- **(Updated Recently)** We organize **publicly available datasets, data construction tools, evaluation benchmarks, and metrics** for audio editing, summarizing the audio domains, editing categories, and evaluation dimensions they cover.
 
 # 🔥What's new
 
