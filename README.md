@@ -438,4 +438,8 @@ If you find this survey useful, please consider citing our paper.
 
 ## 📄 License
 
-This repository is released for academic and research purposes. The license will be updated soon.
+Unless otherwise noted below, original content created for this repository is licensed under the [MIT License](LICENSE).
+
+The [survey paper](https://arxiv.org/abs/2606.23139) and content reproduced or adapted from it, including `taxonomy_overview.png`, `train-based.png`, and `train-free.png`, remain under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). The MIT license does not relicense these materials.
+
+Linked third-party papers, code, models, model weights, datasets, and tools are governed by their respective licenses.
