@@ -1,3 +1,5 @@
+<h1 align="center">Awesome Audio Editing</h1>
+
 <h2 align="center">Audio Editing in the Era of Foundation Models: A Survey</h2>
 
 <p align="center">
@@ -28,6 +30,12 @@
   <a href="https://github.com/MM-Speech/AudioEditSurvey/stargazers"><img src="https://img.shields.io/github/stars/MM-Speech/AudioEditSurvey?style=social" alt="GitHub stars"></a>
 </p>
 
+### 🌐 Languages
+
+[English](README.md) · [简体中文](readme_zh.md) · [한국어](readme_kr.md)
+
+<a id="quick-start"></a>
+
 # 🚀 Quick Start
 
 This repository is the official repository for **Audio Editing in the Era of Foundation Models: A Survey**, Which is accepted by **`AACL-IJCNLP 2026`**.
@@ -36,6 +44,8 @@ This repository is the official repository for **Audio Editing in the Era of Fou
 - We review mainstream audio editing techniques through **foundation-model architectures** and **learning paradigms**, with an emphasis on their core mechanisms and suitability for different editing scenarios.
 - **(Updated Recently)** We curate **publicly available audio editing models**, and summarize their supported task categories and key strengths to help readers identify suitable models.
 - **(Updated Recently)** We organize **publicly available datasets, data construction tools, evaluation benchmarks, and metrics** for audio editing, summarizing the audio domains, editing categories, and evaluation dimensions they cover.
+
+<a id="whats-new"></a>
 
 # 🔥What's new
 
@@ -48,8 +58,8 @@ This repository is the official repository for **Audio Editing in the Era of Fou
 1. [Introduction](#introduction)  
 2. [Scope](#scope)  
 3. [Overall](#overall)  
-   - [Organization of This Survey](#organization-of-this-survey)  
-   - [Taxonomy of Audio Editing](#taxonomy-of-audio-editing)  
+   - [Taxonomy Overview](#taxonomy-overview)  
+   - [Taxonomy Details](#taxonomy-details)  
    - [Representative Audio Editing Methods](#representative-audio-editing-methods)  
 4. [Foundation Models for Audio Editing](#foundation-models-for-audio-editing)  
 5. [Training-based Audio Editing](#training-based-audio-editing)  
@@ -66,6 +76,8 @@ This repository is the official repository for **Audio Editing in the Era of Fou
 
 ---
 
+<a id="introduction"></a>
+
 ## 📌 Introduction
 
 This is the official repository for **[Audio Editing in the Era of Foundation Models: A Survey](https://arxiv.org/abs/2606.23139)**, accepted to **AACL-IJCNLP 2026**. It is maintained by **MM-Speech** and collects papers and resources for foundation-model-based audio editing.
@@ -75,14 +87,20 @@ This is the official repository for **[Audio Editing in the Era of Foundation Mo
 
 ---
 
+<a id="scope"></a>
+
 ## 🎯 Scope
 
 In this survey, we focus on works that make direct contributions to audio editing in the era of foundation models. To ensure a precise and focused discussion, we adopt two main inclusion criteria: (1) the task should center on audio editing, which we define as modifying the acoustic attributes, instances, or content of an existing audio recording, without transformations so substantial that they amount to generating an entirely new audio sample; (2) the method should rely on mainstream audio foundation model paradigms.
-Accordingly, we do not cover works primarily focused on audio generation, nor do we provide an extensive discussion of signal-processing-based audio editing methods. In addition, to maintain a focused scope, spatial audio\footnote{Spatial audio refers to multi-channel audio formats, such as binaural stereo and first-order Ambisonics (FOA).} and related editing techniques are beyond the main scope of this survey.
+Accordingly, we do not cover works primarily focused on audio generation, nor do we provide an extensive discussion of signal-processing-based audio editing methods. In addition, to maintain a focused scope, spatial audio (multi-channel formats such as binaural stereo and first-order Ambisonics (FOA)) and related editing techniques are beyond the main scope of this survey.
 
 ---
 
+<a id="overall"></a>
+
 ## 🧭 Overall
+
+<a id="taxonomy-overview"></a>
 
 ### 🗂️ Taxonomy Overview
 
@@ -91,6 +109,8 @@ Accordingly, we do not cover works primarily focused on audio generation, nor do
 *Figure 1: Taxonomy of audio editing tasks.*
 
 
+
+<a id="taxonomy-details"></a>
 
 ### 🧩 Taxonomy Details
 
@@ -102,6 +122,8 @@ Accordingly, we do not cover works primarily focused on audio generation, nor do
 | Acoustic Editing | Modifies low-level perceptual attributes while preserving the overall structure and source characteristics of the original audio. | restoration, reverberation editing, loudness/mixing control, equalization, spectral texture editing |
 | Semantic Editing | Modifies high-level interpretable information conveyed by audio while maintaining task-irrelevant properties. | linguistic editing, expressive editing, stylistic editing |
 | Instance Editing | Manipulates identifiable audio entities while preserving the remaining scene and source relationships. | replacement, deletion/extraction, insertion, overlay/remixing |
+
+<a id="representative-audio-editing-methods"></a>
 
 ### 📚 Representative Audio Editing Methods
 
@@ -130,6 +152,8 @@ Accordingly, we do not cover works primarily focused on audio generation, nor do
 
 ---
 
+<a id="foundation-models-for-audio-editing"></a>
+
 ## 🏗️ Foundation Models for Audio Editing
 
 ### 1. Early Neural Editing Models
@@ -149,6 +173,8 @@ Diffusion and flow-matching models formulate audio editing as conditional transf
 Instruction-conditioned and multimodal interfaces for audio editing provide high-level control for foundation-model-based audio editing. They allow users to specify editing intents through natural language instructions, task prompts, reference audio, temporal regions, or visual cues, which are shifted into target spans, task embeddings, event locations, speaker references, or preservation constraints.
 
 ---
+
+<a id="training-based-audio-editing"></a>
 
 ## 🧪 Training-based Audio Editing
 
@@ -171,6 +197,8 @@ Training-based approaches refer to audio editing methods that learn editing beha
 
 
 ---
+
+<a id="training-free-audio-editing"></a>
 
 ## 🪄 Training-free Audio Editing
 
@@ -213,6 +241,8 @@ This non-exhaustive list highlights datasets suited to audio editing or widely u
 
 Durations are approximate, without adding together alternate modalities or mixture stems. **Text** refers to transcripts, captions or instructions; label-only metadata are described in **Annotation**.
 
+<a id="speech"></a>
+
 #### Speech
 
 | Name | Paper | Dataset / Code | Duration | Paired | Editing Types | Annotation | Modalities |
@@ -226,6 +256,8 @@ Durations are approximate, without adding together alternate modalities or mixtu
 | LJSpeech v1.1 | <a href="https://keithito.com/LJ-Speech-Dataset/"><img height="20" src="https://img.shields.io/badge/Dataset-Release-brightgreen" alt="Dataset Release"></a> | <a href="https://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈24 h | ❌ | Semantic† | Transcript; normalized text | Audio, Text |
 | RAVDESS (speech) | <a href="https://doi.org/10.1371/journal.pone.0196391"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://zenodo.org/records/1188976"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈1.7 h | ❌ | Semantic† | Label: emotion, intensity, speaker; fixed transcripts | Audio, Text, Video |
 | CREMA-D | <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4313618/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/CheyneyComputerScience/CREMA-D"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://gitlab.com/cs-cooper-lab/crema-d-mirror"><img height="20" src="https://img.shields.io/badge/GitLab-Mirror-FC6D26?logo=gitlab&amp;logoColor=white" alt="GitLab Mirror"></a> | ≈5.3 h | ❌ | Semantic† | Label: emotion/intensity; perceptual ratings; fixed transcripts | Audio, Text, Video |
+
+<a id="music"></a>
 
 #### Music
 
@@ -241,6 +273,8 @@ Durations are approximate, without adding together alternate modalities or mixtu
 | MTG-Jamendo | <a href="https://sites.google.com/view/ml4md2019/program"><img height="20" src="https://img.shields.io/badge/Publication-Record-brightgreen" alt="Publication Record"></a> | <a href="https://github.com/MTG/mtg-jamendo-dataset"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://github.com/MTG/mtg-jamendo-dataset#downloading-the-data"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈3,770 h | ❌ | Semantic†; Instance† | Label: genre, instrument, mood/theme | Audio |
 | FMA (large) | <a href="https://arxiv.org/abs/1612.01840"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/mdeff/fma"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://os.unil.cloud.switch.ch/fma/fma_large.zip"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈888 h | ❌ | Semantic† | Label: genre hierarchy; track/artist metadata | Audio |
 
+<a id="audio"></a>
+
 #### Audio
 
 | Name | Paper | Dataset / Code | Duration | Paired | Editing Types | Annotation | Modalities |
@@ -254,6 +288,8 @@ Durations are approximate, without adding together alternate modalities or mixtu
 | ESC-50 | <a href="https://www.karolpiczak.com/papers/Piczak2015-ESC-Dataset.pdf"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/karolpiczak/ESC-50"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | ≈2.8 h | ❌ | Instance† | Label: 50 environmental sound classes | Audio |
 | UrbanSound8K | <a href="https://drive.google.com/file/d/0B2SQvWn0_78BX2wtbWZLVnRhSDg/view?usp=sharing"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://urbansounddataset.weebly.com/urbansound8k.html"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a><br><a href="https://zenodo.org/records/1203745"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈8.8 h | ❌ | Instance† | Label: 10 urban sound classes; salience; source timestamps | Audio |
 | VGGSound | <a href="https://arxiv.org/abs/2004.14368"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/hche11/VGGSound/tree/master/data"><img height="20" src="https://img.shields.io/badge/GitHub-Metadata-181717?logo=github&amp;logoColor=white" alt="GitHub Metadata"></a> | ≈550 h | ❌ | Instance† | Label: audio-visual event class; video timestamps | Audio, Video (upstream) |
+
+<a id="unified"></a>
 
 #### Unified
 
@@ -546,6 +582,8 @@ Foundation-model-based audio editing still faces several system-level challenges
 
 ---
 
+<a id="citation"></a>
+
 ## Citation
 
 If You find this survey or repository useful, please cite our paper:
@@ -559,11 +597,15 @@ If You find this survey or repository useful, please cite our paper:
 }
 ```
 
+<a id="contributing"></a>
+
 ## Contributing
 
-This repo is meant to keep growing. If a full-duplex model, dataset, or benchmark is missing, please feel free to open an [issue](https://github.com/MM-Speech/AudioEditSurvey/issues) or a pull request.
+This repo is meant to keep growing. If an audio editing model, dataset, or benchmark is missing, please feel free to open an [issue](https://github.com/MM-Speech/AudioEditSurvey/issues) or a pull request.
 
 ---
+
+<a id="license"></a>
 
 ## 📄 License
 
