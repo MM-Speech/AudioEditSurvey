@@ -60,7 +60,7 @@ This repository is the official repository for **Audio Editing in the Era of Fou
    - [Data Tools](#data-tools)  
    - [Benchmarks](#benchmarks)
    - [Evaluation Metrics](#evaluation-metrics)
-8. [Systemization Challenges and Future Directions](#systemization-challenges-and-future-directions)  
+8. [Challenges and Future Directions](#challenges-and-future-directions)  
 9. [Citation](#citation)
 10. [Contributing](#contributing)
 
@@ -207,6 +207,8 @@ Training-free approaches adapt pretrained audio generative models to editing wit
 
 Public datasets for audio editing and controllable audio generation, grouped by their primary audio domain.
 
+This non-exhaustive list highlights datasets suited to audio editing or widely used in the community, with availability verified by the repository maintainers for every entry.
+
 **Paired** indicates released source–target audio, mixture–stem correspondence, or explicitly matched control/technique takes (✅ / ❌); shared transcripts, audio–text alignment, or audio–MIDI alignment alone do not count. **†** marks an editing use that requires task construction or adaptation, rather than native editing supervision. Editing types follow our **Acoustic / Instance / Semantic** taxonomy.
 
 Durations are approximate, without adding together alternate modalities or mixture stems. **Text** refers to transcripts, captions or instructions; label-only metadata are described in **Annotation**.
@@ -235,7 +237,7 @@ Durations are approximate, without adding together alternate modalities or mixtu
 | MAESTRO v3 | <a href="https://arxiv.org/abs/1810.12247"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://magenta.tensorflow.org/datasets/maestro"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a><br><a href="https://storage.googleapis.com/magentadata/datasets/maestro/v3.0.0/maestro-v3.0.0.zip"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈199 h | ❌ | Semantic† | Aligned MIDI: pitch, timing, velocity, pedals; piece metadata | Audio, MIDI |
 | NSynth | <a href="https://arxiv.org/abs/1704.01279"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://magenta.tensorflow.org/datasets/nsynth"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a> | ≈340 h | ❌ | Instance†; Semantic† | Label: instrument, pitch, velocity, timbral qualities | Audio |
 | Groove MIDI Dataset | <a href="https://arxiv.org/abs/1905.06118"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://magenta.tensorflow.org/datasets/groove"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a><br><a href="https://storage.googleapis.com/magentadata/datasets/groove/groove-v1.0.0.zip"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈13.6 h | ❌ | Semantic† | Aligned MIDI; tempo/style labels; performance timing/velocity | Audio, MIDI |
-| MusicCaps‡ | <a href="https://arxiv.org/abs/2301.11325"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/datasets/google/MusicCaps"><img height="20" src="https://img.shields.io/badge/HuggingFace-Metadata-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Metadata"></a> | ≈15.3 h | ❌ | Semantic†; Instance† | Caption; musical aspect labels | Audio, Text |
+| MusicCaps | <a href="https://arxiv.org/abs/2301.11325"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/datasets/google/MusicCaps"><img height="20" src="https://img.shields.io/badge/HuggingFace-Metadata-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Metadata"></a> | ≈15.3 h | ❌ | Semantic†; Instance† | Caption; musical aspect labels | Audio, Text |
 | MTG-Jamendo | <a href="https://sites.google.com/view/ml4md2019/program"><img height="20" src="https://img.shields.io/badge/Publication-Record-brightgreen" alt="Publication Record"></a> | <a href="https://github.com/MTG/mtg-jamendo-dataset"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://github.com/MTG/mtg-jamendo-dataset#downloading-the-data"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈3,770 h | ❌ | Semantic†; Instance† | Label: genre, instrument, mood/theme | Audio |
 | FMA (large) | <a href="https://arxiv.org/abs/1612.01840"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/mdeff/fma"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://os.unil.cloud.switch.ch/fma/fma_large.zip"><img height="20" src="https://img.shields.io/badge/Download-Data-007EC6" alt="Download Data"></a> | ≈888 h | ❌ | Semantic† | Label: genre hierarchy; track/artist metadata | Audio |
 
@@ -244,14 +246,14 @@ Durations are approximate, without adding together alternate modalities or mixtu
 | Name | Paper | Dataset / Code | Duration | Paired | Editing Types | Annotation | Modalities |
 |---|---|---|---|---|---|---|---|
 | FUSS | <a href="https://arxiv.org/abs/2011.00803"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/google-research/sound-separation/tree/master/datasets/fuss"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://zenodo.org/records/3743844"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈61 h mixtures | ✅ Mixture/sources; dry/reverberant | Instance; Acoustic | Source/time metadata; mixing parameters; no event labels | Audio |
-| AudioSet‡ | <a href="https://research.google/pubs/audio-set-an-ontology-and-human-labeled-dataset-for-audio-events/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://research.google.com/audioset/download.html"><img height="20" src="https://img.shields.io/badge/Dataset-Metadata-007EC6" alt="Dataset Metadata"></a> | ≈5,790 h | ❌ | Instance† | Label: sound-event ontology; clip-level multi-labels | Audio, Video (upstream) |
-| AudioCaps v1‡ | <a href="https://aclanthology.org/N19-1011/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/cdjkim/audiocaps/tree/master/dataset"><img height="20" src="https://img.shields.io/badge/GitHub-Metadata-181717?logo=github&amp;logoColor=white" alt="GitHub Metadata"></a> | ≈143 h | ❌ | Instance†; Semantic† | Caption: one or five descriptions per clip | Audio, Text |
+| AudioSet | <a href="https://research.google/pubs/audio-set-an-ontology-and-human-labeled-dataset-for-audio-events/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://research.google.com/audioset/download.html"><img height="20" src="https://img.shields.io/badge/Dataset-Metadata-007EC6" alt="Dataset Metadata"></a> | ≈5,790 h | ❌ | Instance† | Label: sound-event ontology; clip-level multi-labels | Audio, Video (upstream) |
+| AudioCaps v1 | <a href="https://aclanthology.org/N19-1011/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/cdjkim/audiocaps/tree/master/dataset"><img height="20" src="https://img.shields.io/badge/GitHub-Metadata-181717?logo=github&amp;logoColor=white" alt="GitHub Metadata"></a> | ≈143 h | ❌ | Instance†; Semantic† | Caption: one or five descriptions per clip | Audio, Text |
 | Clotho v2.1 | <a href="https://arxiv.org/abs/1910.09387"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://zenodo.org/records/4783391"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈37 h<br>(5,929 labeled clips) | ❌ | Instance†; Semantic† | Caption: five per clip; Freesound keywords | Audio, Text |
 | WavCaps | <a href="https://arxiv.org/abs/2303.17395"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/XinhaoMei/WavCaps"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://huggingface.co/datasets/cvssp/WavCaps"><img height="20" src="https://img.shields.io/badge/HuggingFace-Dataset-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Dataset"></a> | ≈7,568 h | ❌ | Instance†; Semantic† | LLM-assisted captions; source descriptions/metadata | Audio, Text |
 | FSD50K | <a href="https://arxiv.org/abs/2010.00475"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://zenodo.org/records/4060432"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈108 h | ❌ | Instance† | Label: 200 sound-event classes; clip-level multi-labels | Audio |
 | ESC-50 | <a href="https://www.karolpiczak.com/papers/Piczak2015-ESC-Dataset.pdf"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://github.com/karolpiczak/ESC-50"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | ≈2.8 h | ❌ | Instance† | Label: 50 environmental sound classes | Audio |
 | UrbanSound8K | <a href="https://drive.google.com/file/d/0B2SQvWn0_78BX2wtbWZLVnRhSDg/view?usp=sharing"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper Link"></a> | <a href="https://urbansounddataset.weebly.com/urbansound8k.html"><img height="20" src="https://img.shields.io/badge/Project-Page-007EC6" alt="Project Page"></a><br><a href="https://zenodo.org/records/1203745"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈8.8 h | ❌ | Instance† | Label: 10 urban sound classes; salience; source timestamps | Audio |
-| VGGSound‡ | <a href="https://arxiv.org/abs/2004.14368"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/hche11/VGGSound/tree/master/data"><img height="20" src="https://img.shields.io/badge/GitHub-Metadata-181717?logo=github&amp;logoColor=white" alt="GitHub Metadata"></a> | ≈550 h | ❌ | Instance† | Label: audio-visual event class; video timestamps | Audio, Video (upstream) |
+| VGGSound | <a href="https://arxiv.org/abs/2004.14368"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/hche11/VGGSound/tree/master/data"><img height="20" src="https://img.shields.io/badge/GitHub-Metadata-181717?logo=github&amp;logoColor=white" alt="GitHub Metadata"></a> | ≈550 h | ❌ | Instance† | Label: audio-visual event class; video timestamps | Audio, Video (upstream) |
 
 #### Unified
 
@@ -259,139 +261,100 @@ These corpora combine speech, music, and general sounds.
 
 | Name | Paper | Dataset / Code | Duration | Paired | Editing Types | Annotation | Modalities |
 |---|---|---|---|---|---|---|---|
-| AudioEdit (Audio-Omni) | <a href="https://arxiv.org/abs/2604.10708"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ZeyueT/Audio-Omni"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://huggingface.co/datasets/HKUSTAudio/AudioEdit"><img height="20" src="https://img.shields.io/badge/HuggingFace-Dataset-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Dataset"></a> | ≈2,686 h*<br>(966,794 task pairs) | ✅ Source/edited target | Instance | Instruct: add, remove, extract, source transformation | Audio, Text |
+| AudioEdit (Audio-Omni) | <a href="https://arxiv.org/abs/2604.10708"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ZeyueT/Audio-Omni"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://huggingface.co/datasets/HKUSTAudio/AudioEdit"><img height="20" src="https://img.shields.io/badge/HuggingFace-Dataset-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Dataset"></a> | ≈2,686 h<br>(966,794 task pairs) | ✅ Source/edited target | Instance | Instruct: add, remove, extract, source transformation | Audio, Text |
 | Divide and Remaster v2 | <a href="https://arxiv.org/abs/2110.09958"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/darius522/dnr-utils"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a><br><a href="https://zenodo.org/records/6949108"><img height="20" src="https://img.shields.io/badge/Zenodo-Data-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Data"></a> | ≈81 h | ✅ Mixture/stems | Instance | Transcript; music genre; sound labels/timestamps | Audio, Text |
 | MUSAN | <a href="https://arxiv.org/abs/1510.08484"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://www.openslr.org/17/"><img height="20" src="https://img.shields.io/badge/OpenSLR-Data-2E8B57" alt="OpenSLR Data"></a> | ≈109 h | ❌ | Acoustic†; Instance† | Label: speech/music/noise; speech and music metadata | Audio |
-
-<details>
-<summary>Availability and duration notes</summary>
-
-- **‡ Linked-media resources:** AudioSet, AudioCaps, MusicCaps and VGGSound release public annotations and source-video identifiers. Audio availability depends on the upstream videos; the listed durations are nominal corpus sizes. [VGGSound's website](https://www.robots.ox.ac.uk/~vgg/data/vggsound/) no longer serves dataset downloads, but its official GitHub metadata remain available. AudioCaps' bulk media archive requires a separate request.
-- **\* AudioEdit:** the public [editing metadata](https://huggingface.co/datasets/HKUSTAudio/AudioEdit/blob/main/meta_total.jsonl) contain 515,664 add/remove/extract records, and the [transformation metadata](https://huggingface.co/datasets/HKUSTAudio/AudioEdit/blob/main/meta_transfer.jsonl) contain 451,130 records. The duration estimate uses 966,794 task pairs × approximately 10 seconds; repeated inputs across tasks are counted per pair. This is the released manifest scale, rather than the paper's larger reported training scale. Its source-changing “style transfer” instructions are mapped to **Instance** editing under our taxonomy.
-- **Duration estimates:** Clotho uses 5,929 labeled clips × approximately 22.5 seconds. VoiceBank+DEMAND, RAVDESS and CREMA-D are rounded from the public audio-file metadata; RAVDESS here includes its speech recordings. MAESTRO uses v3 metadata; MTG-Jamendo uses the 55,609-track autotagging collection; FMA uses the 30-second **large** release.
-- **Publication records:** VCTK and LJSpeech link to their dataset records/releases in the Paper column; MTG-Jamendo links to its official workshop publication record. All datasets retain their original usage terms.
-- **Release check (2026-09-29):** [AuK](https://github.com/Tencent-Hunyuan/AuK) provides code and model weights, but we could not verify a public training-corpus download, so it is not listed here.
-
-</details>
 
 <a id="data-tools"></a>
 
 ### 🛠️ Data Tools
 
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Method</th>
-      <th>URL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="10"><b>Temporal Localization Tools</b></td>
-      <td>Praat</td>
-      <td><a href="https://www.fon.hum.uva.nl/praat/">Link</a></td>
-    </tr>
-    <tr>
-      <td>Montreal Forced Aligner (MFA)</td>
-      <td><a href="https://arxiv.org/abs/1705.09525">Link</a></td>
-    </tr>
-    <tr>
-      <td>WhisperX</td>
-      <td><a href="https://arxiv.org/abs/2303.00747">Link</a></td>
-    </tr>
-    <tr>
-      <td>pyannote.audio</td>
-      <td><a href="https://arxiv.org/abs/1911.01255">Link</a></td>
-    </tr>
-    <tr>
-      <td>PANNs</td>
-      <td><a href="https://arxiv.org/abs/1912.10211">Link</a></td>
-    </tr>
-    <tr>
-      <td>Parselmouth</td>
-      <td><a href="https://doi.org/10.1016/j.wocn.2018.07.001">Link</a></td>
-    </tr>
-    <tr>
-      <td>RMVPE</td>
-      <td><a href="https://arxiv.org/abs/2306.15412">Link</a></td>
-    </tr>
-    <tr>
-      <td>CREPE</td>
-      <td><a href="https://arxiv.org/abs/1802.06182">Link</a></td>
-    </tr>
-    <tr>
-      <td>ROSYOT</td>
-      <td><a href="https://aclanthology.org/2024.acl-long.526/">Link</a></td>
-    </tr>
-    <tr>
-      <td>MusicYOLO</td>
-      <td><a href="https://ieeexplore.ieee.org/abstract/document/9746684">Link</a></td>
-    </tr>
-    <tr>
-      <td rowspan="6"><b>Semantic Annotation Tools</b></td>
-      <td>FunASR</td>
-      <td><a href="https://arxiv.org/abs/2305.11013">Link</a></td>
-    </tr>
-    <tr>
-      <td>Whisper</td>
-      <td><a href="https://arxiv.org/abs/2212.04356">Link</a></td>
-    </tr>
-    <tr>
-      <td>HTS-AT</td>
-      <td><a href="https://arxiv.org/abs/2202.00874">Link</a></td>
-    </tr>
-    <tr>
-      <td>SELD-TCN</td>
-      <td><a href="https://ieeexplore.ieee.org/abstract/document/9287716">Link</a></td>
-    </tr>
-    <tr>
-      <td>emotion2vec</td>
-      <td><a href="https://arxiv.org/abs/2312.15185">Link</a></td>
-    </tr>
-    <tr>
-      <td>Qwen3-Omni</td>
-      <td><a href="https://arxiv.org/abs/2509.17765">Link</a></td>
-    </tr>
-    <tr>
-      <td rowspan="9"><b>Pair Construction Tools</b></td>
-      <td>MaskGCT</td>
-      <td><a href="https://arxiv.org/abs/2409.00750">Link</a></td>
-    </tr>
-    <tr>
-      <td>StyleTTS</td>
-      <td><a href="https://ieeexplore.ieee.org/abstract/document/10852161">Link</a></td>
-    </tr>
-    <tr>
-      <td>AutoVC</td>
-      <td><a href="https://arxiv.org/abs/1905.05879">Link</a></td>
-    </tr>
-    <tr>
-      <td>YourTTS</td>
-      <td><a href="https://arxiv.org/abs/2112.02418">Link</a></td>
-    </tr>
-    <tr>
-      <td>Open-Unmix</td>
-      <td><a href="https://joss.theoj.org/papers/10.21105/joss.01667">Link</a></td>
-    </tr>
-    <tr>
-      <td>Spleeter</td>
-      <td><a href="https://joss.theoj.org/papers/10.21105/joss.02154">Link</a></td>
-    </tr>
-    <tr>
-      <td>Demucs</td>
-      <td><a href="https://arxiv.org/abs/2111.03600">Link</a></td>
-    </tr>
-    <tr>
-      <td>AudioSep</td>
-      <td><a href="https://arxiv.org/abs/2308.05037">Link</a></td>
-    </tr>
-    <tr>
-      <td>SAM-Audio</td>
-      <td><a href="https://arxiv.org/abs/2512.18099">Link</a></td>
-    </tr>
-  </tbody>
-</table>
+Open-source tools for constructing editing data and annotating existing recordings. **Supported Task Type** follows our **Acoustic / Semantic / Instance** taxonomy and indicates the editing supervision that each tool can help construct. **Unified** covers tools applicable across speech, music and general audio.
+
+#### Tools for Data Generation
+
+Synthesis, source separation, mixing and signal processing for constructing audio examples and source–target pairs.
+
+##### Speech
+
+| Tool | Supported Task Type | What It Constructs | Control Level | Code | Model |
+|---|---|---|---|---|---|
+| Qwen3-TTS | Semantic; Instance | Text-aligned utterances with instruction-controlled delivery or a reference speaker. | Utterance | <a href="https://github.com/QwenLM/Qwen3-TTS"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Base-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Base"></a><br><a href="https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice"><img height="20" src="https://img.shields.io/badge/Hugging_Face-CustomVoice-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face CustomVoice"></a> |
+| CosyVoice3 | Semantic; Instance | Text-aligned speech with voice cloning and prompted language, emotion or delivery. | Utterance; pronunciation units | <a href="https://github.com/QwenAudio/CosyVoice"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/FunAudioLLM/Fun-CosyVoice3-0.5B-2512"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Model"></a> |
+| MaskGCT | Semantic; Instance | Text-conditioned speech with a reference voice and configurable total duration. | Utterance; total duration | <a href="https://github.com/open-mmlab/Amphion/tree/main/models/tts/maskgct"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/amphion/MaskGCT"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Model"></a> |
+| Seed-VC | Instance | Voice-converted recordings paired with their source speech for speaker/timbre replacement. | Utterance / source recording | <a href="https://github.com/Plachtaa/seed-vc"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/Plachta/Seed-VC"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Model"></a> |
+| AuK | Acoustic; Semantic; Instance | Instruction-edited speech for content, delivery, voice, enhancement and target-speaker tasks. | Utterance; text-specified word / phrase | <a href="https://github.com/Tencent-Hunyuan/AuK"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/tencent/AuK"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Model"></a> |
+
+##### Music
+
+| Tool | Supported Task Type | What It Constructs | Control Level | Code | Model |
+|---|---|---|---|---|---|
+| MusicGen | Semantic | Text- or melody-conditioned music clips and continuations for style/content-controlled examples. | Clip; melody sequence | <a href="https://github.com/facebookresearch/audiocraft"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/facebook/musicgen-melody"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Melody-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Melody"></a> |
+| Demucs | Instance | Estimated vocal, drum, bass and other stems for extraction, removal and remix pair construction. | Stem / track | <a href="https://github.com/facebookresearch/demucs"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://dl.fbaipublicfiles.com/demucs/hybrid_transformer/955717e8-8726e21a.th"><img height="20" src="https://img.shields.io/badge/Model-Checkpoint-2E8B57" alt="Model Checkpoint"></a> |
+| Spleeter | Instance | Estimated 2-, 4- or 5-stem decompositions for source removal, extraction and remixing. | Stem / track | <a href="https://github.com/deezer/spleeter"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://github.com/deezer/spleeter/releases/tag/v1.4.0"><img height="20" src="https://img.shields.io/badge/GitHub-Checkpoints-181717?logo=github&amp;logoColor=white" alt="GitHub Checkpoints"></a> |
+| FluidSynth | Semantic; Instance | Audio rendered from MIDI and a SoundFont, aligned with notes, velocities and instrument assignments. | Note; MIDI control event / track | <a href="https://github.com/FluidSynth/fluidsynth"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> |  |
+
+##### Audio
+
+| Tool | Supported Task Type | What It Constructs | Control Level | Code | Model |
+|---|---|---|---|---|---|
+| AudioLDM 2 | Instance | Text-conditioned sound clips to use as source assets in insertion or replacement examples. | Clip | <a href="https://github.com/haoheliu/AudioLDM2"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/cvssp/audioldm2"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Model"></a> |
+| AudioSep | Instance | Text-selected source estimates from mixtures for extraction and removal pair construction. | Described source / clip | <a href="https://github.com/Audio-AGI/AudioSep"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/spaces/Audio-AGI/AudioSep/tree/main/checkpoint"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Checkpoints-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Checkpoints"></a> |
+| Scaper | Acoustic; Instance | Synthetic soundscapes with event labels, onset/offset times, SNRs and optional isolated event tracks. | Event; start time / duration / SNR | <a href="https://github.com/justinsalamon/scaper"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> |  |
+| SpatialScaper | Acoustic; Instance | Spatialized soundscapes with event activity, source trajectories and room-response conditions. | Event / trajectory / scene | <a href="https://github.com/marl/SpatialScaper"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> |  |
+
+##### Unified
+
+| Tool | Supported Task Type | What It Constructs | Control Level | Code | Model |
+|---|---|---|---|---|---|
+| SAM-Audio | Instance | Prompt-selected target and residual audio for extraction, removal and remix examples. | Source; temporal-span prompts | <a href="https://github.com/facebookresearch/sam-audio"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/facebook/sam-audio-large"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Model"></a><br>Access request |
+| Audiomentations | Acoustic; Semantic | Augmented audio for clean/degraded and pitch/tempo contrast pairs using noise, gain, filtering and other transforms. | Clip; selected segment via slicing | <a href="https://github.com/iver56/audiomentations"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> |  |
+| Pedalboard | Acoustic | Effect-processed audio for dry/wet or clean/degraded pairs using EQ, gain, compression, distortion and reverb. | Clip / processing block | <a href="https://github.com/spotify/pedalboard"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> |  |
+| Pyroomacoustics | Acoustic; Instance | Room impulse responses and microphone mixtures from positioned sources, including dry/reverberant pairs. | Scene / source position | <a href="https://github.com/LCAV/pyroomacoustics"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> |  |
+
+#### Tools for Data Annotation
+
+Tools for extracting or creating content, attribute and temporal annotations from existing audio.
+
+##### Speech
+
+| Tool | Supported Task Type | What It Annotates | Annotation Level | Code | Model |
+|---|---|---|---|---|---|
+| Montreal Forced Aligner (MFA) | Semantic | Word and phone boundaries obtained by aligning speech with supplied transcripts and pronunciation dictionaries. | Word / phoneme | <a href="https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://mfa-models.readthedocs.io/en/latest/acoustic/index.html"><img height="20" src="https://img.shields.io/badge/Model-Acoustic%20models-2E8B57" alt="Model Acoustic models"></a> |
+| WhisperX | Semantic | ASR transcripts with word timestamps from a language-specific alignment model. | Utterance / word | <a href="https://github.com/m-bain/whisperX"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/Systran/faster-whisper-large-v3"><img height="20" src="https://img.shields.io/badge/Hugging_Face-ASR-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face ASR"></a><br><a href="https://huggingface.co/facebook/wav2vec2-large-960h-lv60-self"><img height="20" src="https://img.shields.io/badge/Hugging_Face-EN%20aligner-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face EN aligner"></a> |
+| Qwen3-ASR + ForcedAligner | Semantic | Transcripts, language labels and text-unit timestamps using the released ASR and forced-alignment models. | Utterance / word | <a href="https://github.com/QwenLM/Qwen3-ASR"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/Qwen/Qwen3-ASR-1.7B"><img height="20" src="https://img.shields.io/badge/Hugging_Face-ASR-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face ASR"></a><br><a href="https://huggingface.co/Qwen/Qwen3-ForcedAligner-0.6B"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Aligner-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Aligner"></a> |
+| pyannote.audio | Instance | Speaker-labeled speech turns and overlapping-speaker activity. | Speaker turn / segment | <a href="https://github.com/pyannote/pyannote-audio"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/pyannote/speaker-diarization-community-1"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Community--1-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Community-1"></a><br>Accept access terms |
+| Silero VAD | Instance | Speech/non-speech probabilities and detected speech start/end times. | Frame / speech segment | <a href="https://github.com/snakers4/silero-vad"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://github.com/snakers4/silero-vad/tree/master/src/silero_vad/data"><img height="20" src="https://img.shields.io/badge/GitHub-Weights-181717?logo=github&amp;logoColor=white" alt="GitHub Weights"></a> |
+| emotion2vec+ | Semantic | Speech-emotion labels and scores, with optional learned emotion representations. | Utterance (labels); frame (features) | <a href="https://github.com/ddlBoJack/emotion2vec"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/emotion2vec/emotion2vec_plus_large"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Large-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Large"></a> |
+| FunASR / SenseVoiceSmall | Semantic; Instance | Transcripts, language and emotion tags, and audio-event tags such as laughter or applause. | Utterance / VAD segment | <a href="https://github.com/modelscope/FunASR"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/FunAudioLLM/SenseVoiceSmall"><img height="20" src="https://img.shields.io/badge/Hugging_Face-SenseVoiceSmall-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face SenseVoiceSmall"></a> |
+| Praat / Parselmouth | Acoustic; Semantic | Pitch, formants and intensity tracks; manually defined TextGrid points and intervals in Praat. | Frame; word / phoneme / interval (manual) | <a href="https://github.com/praat/praat.github.io"><img height="20" src="https://img.shields.io/badge/GitHub-Praat-181717?logo=github&amp;logoColor=white" alt="GitHub Praat"></a><br><a href="https://github.com/YannickJadoul/Parselmouth"><img height="20" src="https://img.shields.io/badge/GitHub-Parselmouth-181717?logo=github&amp;logoColor=white" alt="GitHub Parselmouth"></a> |  |
+
+##### Music
+
+| Tool | Supported Task Type | What It Annotates | Annotation Level | Code | Model |
+|---|---|---|---|---|---|
+| RMVPE | Semantic | Vocal F0 trajectories from polyphonic music. | Frame | <a href="https://github.com/Dream-High/RMVPE"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://drive.google.com/file/d/1JNtNT37KiLq9uFQqHk7JFs-3trxd3bRh/view"><img height="20" src="https://img.shields.io/badge/Google_Drive-ROSVOT%20bundle-4285F4?logo=googledrive&amp;logoColor=white" alt="Google Drive ROSVOT bundle"></a> |
+| CREPE | Semantic | Monophonic F0 estimates and confidence values. | Frame | <a href="https://github.com/marl/crepe"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://github.com/marl/crepe/tree/models"><img height="20" src="https://img.shields.io/badge/GitHub-Weights-181717?logo=github&amp;logoColor=white" alt="GitHub Weights"></a> |
+| ROSVOT | Semantic | Singing-note pitches and onset/offset times, with word boundaries from its RWBD component. | Note / word | <a href="https://github.com/RickyL-2000/ROSVOT"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://drive.google.com/file/d/1JNtNT37KiLq9uFQqHk7JFs-3trxd3bRh/view"><img height="20" src="https://img.shields.io/badge/Google_Drive-Checkpoints-4285F4?logo=googledrive&amp;logoColor=white" alt="Google Drive Checkpoints"></a> |
+| Basic Pitch | Semantic | Polyphonic note events and pitch bends exported as MIDI; most effective on one instrument at a time. | Note; frame-level pitch contour | <a href="https://github.com/spotify/basic-pitch"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://github.com/spotify/basic-pitch/tree/main/basic_pitch/saved_models"><img height="20" src="https://img.shields.io/badge/GitHub-Weights-181717?logo=github&amp;logoColor=white" alt="GitHub Weights"></a> |
+| All-In-One Music Structure Analyzer | Semantic | Tempo, beat/downbeat timestamps and labeled sections such as verse, chorus and bridge. | Beat / downbeat / section | <a href="https://github.com/mir-aidj/all-in-one"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/taejunkim/allinone"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Models-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Models"></a> |
+| Music Flamingo | Semantic; Instance | Music captions and question–answer annotations about instrumentation, harmony, mood, structure and lyrics. | Clip / full track (free-form text) | <a href="https://github.com/NVIDIA/audio-flamingo/tree/music_flamingo"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/nvidia/music-flamingo-hf"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Model"></a> |
+
+##### Audio
+
+| Tool | Supported Task Type | What It Annotates | Annotation Level | Code | Model |
+|---|---|---|---|---|---|
+| PANNs | Instance | Sound-event class scores and frame-wise activity with the released decision-level detection models. | Clip / frame | <a href="https://github.com/qiuqiangkong/audioset_tagging_cnn"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://zenodo.org/records/3987831"><img height="20" src="https://img.shields.io/badge/Zenodo-Models-1682D4?logo=zenodo&amp;logoColor=white" alt="Zenodo Models"></a> |
+| HTS-AT | Instance | Sound-event tags and temporal class-activation estimates in localization mode. | Clip / frame | <a href="https://github.com/RetroCirce/HTS-Audio-Transformer"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://drive.google.com/drive/folders/1f5VYMk0uos_YnuBshgmaTVioXbs7Kmz6?usp=sharing"><img height="20" src="https://img.shields.io/badge/Google_Drive-Models-4285F4?logo=googledrive&amp;logoColor=white" alt="Google Drive Models"></a> |
+| YAMNet | Instance | Scores for 521 sound-event classes from overlapping audio windows. | 0.96 s window; 0.48 s hop | <a href="https://github.com/tensorflow/models/tree/master/research/audioset/yamnet"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://storage.googleapis.com/audioset/yamnet.h5"><img height="20" src="https://img.shields.io/badge/Model-Checkpoint-2E8B57" alt="Model Checkpoint"></a> |
+
+##### Unified
+
+| Tool | Supported Task Type | What It Annotates | Annotation Level | Code | Model |
+|---|---|---|---|---|---|
+| Qwen3-Omni Captioner | Acoustic; Semantic; Instance | Detailed audio captions covering speech, music, sound events and acoustic characteristics. | Clip / recording (free-form text) | <a href="https://github.com/QwenLM/Qwen3-Omni"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Captioner"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Captioner-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Captioner"></a> |
+| Audio Flamingo 3 | Semantic; Instance | Prompted transcripts, captions, event descriptions and audio question–answer annotations. | Clip / recording (free-form text) | <a href="https://github.com/NVIDIA/audio-flamingo/tree/audio_flamingo_3"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | <a href="https://huggingface.co/nvidia/audio-flamingo-3-hf"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="Hugging Face Model"></a> |
+| Label Studio | Acoustic; Semantic; Instance | Human-authored clip labels, time-region labels and transcriptions using configurable audio templates. | Clip / manually selected interval | <a href="https://github.com/HumanSignal/label-studio"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> |  |
 
 <a id="benchmarks"></a>
 
@@ -497,139 +460,89 @@ Public evaluation resources for audio editing. **Editing categories** follow thi
 
 ### 📏 Evaluation Metrics
 
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Method</th>
-      <th>URL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="4"><b>Edit Success and Instruction Adherence</b></td>
-      <td>WER / CER</td>
-      <td><a href="https://dl.acm.org/doi/abs/10.1145/3565472.3595606">Link</a></td>
-    </tr>
-    <tr>
-      <td>emotion2vec</td>
-      <td><a href="https://arxiv.org/abs/2312.15185">Link</a></td>
-    </tr>
-    <tr>
-      <td>CLAP</td>
-      <td><a href="https://arxiv.org/abs/2206.04769">Link</a></td>
-    </tr>
-    <tr>
-      <td>Pitch and Rhythm Accuracy</td>
-      <td><a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/94b472a1842cd7c56dcb125fb2765fbd-Abstract-Conference.html">Link</a></td>
-    </tr>
-    <tr>
-      <td rowspan="6"><b>Preservation and Locality</b></td>
-      <td>Speaker Similarity / X-vector</td>
-      <td><a href="https://ieeexplore.ieee.org/document/8461375">Link</a></td>
-    </tr>
-    <tr>
-      <td>Waveform / Spectrogram Similarity</td>
-      <td><a href="https://ieeexplore.ieee.org/abstract/document/9103053">Link</a></td>
-    </tr>
-    <tr>
-      <td>NOMAD</td>
-      <td><a href="https://ieeexplore.ieee.org/abstract/document/10448028">Link</a></td>
-    </tr>
-    <tr>
-      <td>PESQ</td>
-      <td><a href="https://ieeexplore.ieee.org/document/941023">Link</a></td>
-    </tr>
-    <tr>
-      <td>STOI</td>
-      <td><a href="https://ieeexplore.ieee.org/document/5495701">Link</a></td>
-    </tr>
-    <tr>
-      <td>SI-SDR</td>
-      <td><a href="https://arxiv.org/abs/1811.02508">Link</a></td>
-    </tr>
-    <tr>
-      <td rowspan="5"><b>Temporal and Structural Consistency</b></td>
-      <td>Boundary Error</td>
-      <td><a href="https://www.sciencedirect.com/science/article/pii/S0167639324000141">Link</a></td>
-    </tr>
-    <tr>
-      <td>WDTW</td>
-      <td><a href="https://arxiv.org/abs/2604.16056">Link</a></td>
-    </tr>
-    <tr>
-      <td>Melody Accuracy</td>
-      <td><a href="https://arxiv.org/abs/2311.07069">Link</a></td>
-    </tr>
-    <tr>
-      <td>Rhythm F1</td>
-      <td><a href="https://arxiv.org/abs/2407.15060">Link</a></td>
-    </tr>
-    <tr>
-      <td>Dynamics Correlation</td>
-      <td><a href="https://arxiv.org/abs/2507.11096">Link</a></td>
-    </tr>
-    <tr>
-      <td rowspan="10"><b>Audio Quality and Naturalness</b></td>
-      <td>MOS / CMOS</td>
-      <td><a href="https://www.itu.int/rec/T-REC-P.800.1">Link</a></td>
-    </tr>
-    <tr>
-      <td>MOSNet</td>
-      <td><a href="https://arxiv.org/abs/1904.08352">Link</a></td>
-    </tr>
-    <tr>
-      <td>DNSMOS</td>
-      <td><a href="https://arxiv.org/abs/2010.15258">Link</a></td>
-    </tr>
-    <tr>
-      <td>NISQA</td>
-      <td><a href="https://arxiv.org/abs/2104.09494">Link</a></td>
-    </tr>
-    <tr>
-      <td>FAD</td>
-      <td><a href="https://arxiv.org/abs/1812.08466">Link</a></td>
-    </tr>
-    <tr>
-      <td>AuditScore / AuditEval</td>
-      <td><a href="https://arxiv.org/abs/2508.11966">Link</a></td>
-    </tr>
-    <tr>
-      <td>TTA-Bench</td>
-      <td><a href="https://ojs.aaai.org/index.php/AAAI/article/view/40639">Link</a></td>
-    </tr>
-    <tr>
-      <td>AudioEval</td>
-      <td><a href="https://arxiv.org/abs/2510.14570">Link</a></td>
-    </tr>
-    <tr>
-      <td>T2A-Feedback</td>
-      <td><a href="https://aclanthology.org/2025.acl-long.1147/">Link</a></td>
-    </tr>
-    <tr>
-      <td>MuseCPBench</td>
-      <td><a href="https://arxiv.org/abs/2512.14629">Link</a></td>
-    </tr>
-  </tbody>
-</table>
+Metrics are grouped by the four evaluation dimensions used in this survey. **↑ / ↓** indicate higher / lower is better. **Reference / Inputs** lists the information needed alongside the edited output.
+
+#### Instruction Adherence
+
+| Metric | What it measures | Audio Modalities | Reference / Inputs | Paper / Standard | Code / Model |
+|---|---|---|---|---|---|
+| WER / CER ↓ | ASR transcription errors relative to the requested words or characters. | Speech | Target transcript; ASR transcript of the edited output. | <a href="https://arxiv.org/abs/2212.04356"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/jitsi/jiwer"><img height="20" src="https://img.shields.io/badge/GitHub-JiWER-181717?logo=github&amp;logoColor=white" alt="JiWER"></a><br><a href="https://github.com/openai/whisper"><img height="20" src="https://img.shields.io/badge/GitHub-ASR-181717?logo=github&amp;logoColor=white" alt="ASR"></a> |
+| Emotion classification accuracy ↑ | Agreement between the predicted emotion and the requested emotion label. | Speech | Target emotion label; an emotion classifier with a matching label set. | <a href="https://arxiv.org/abs/2312.15185"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/ddlBoJack/emotion2vec"><img height="20" src="https://img.shields.io/badge/GitHub-emotion2vec-181717?logo=github&amp;logoColor=white" alt="emotion2vec"></a> |
+| CLAP audio–text similarity ↑ | Cosine similarity between output audio and the desired audio description. | Music; Audio | Caption describing the desired result; a specified CLAP checkpoint. | <a href="https://arxiv.org/abs/2211.06687"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/LAION-AI/CLAP"><img height="20" src="https://img.shields.io/badge/GitHub-CLAP-181717?logo=github&amp;logoColor=white" alt="CLAP"></a> |
+| Event Occurrence Score (EOS) ↑ | Minimum event-level CLAP similarity after text-guided source separation; checks coverage of requested events. | Audio | Desired event descriptions; event decomposition and separated event tracks. | <a href="https://aclanthology.org/2025.acl-long.1147/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper"></a> |  |
+
+#### Preservation and Locality
+
+For local edits, compare the regions or sources that should remain unchanged.
+
+| Metric | What it measures | Audio Modalities | Reference / Inputs | Paper / Standard | Code / Model |
+|---|---|---|---|---|---|
+| Speaker embedding cosine similarity ↑ | Retention of speaker identity in the edited speech. | Speech | Source speaker audio; the same speaker-verification encoder for both recordings. | <a href="https://arxiv.org/abs/2005.07143"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://huggingface.co/speechbrain/spkrec-ecapa-voxceleb"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="HF Model"></a> |
+| Multi-resolution STFT distance ↓ | Spectral convergence and log-magnitude differences across several time–frequency resolutions. | Speech; Music; Audio | Aligned source/output audio from the non-edited regions. | <a href="https://arxiv.org/abs/1910.11480"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/csteinmetz1/auraloss"><img height="20" src="https://img.shields.io/badge/GitHub-auraloss-181717?logo=github&amp;logoColor=white" alt="auraloss"></a> |
+| CLAP audio–audio similarity ↑ | Semantic similarity between source and edited audio embeddings; a broad preservation proxy. | Music; Audio | Source audio; matching non-target regions or stems for local comparison. | <a href="https://arxiv.org/abs/2507.11096"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/LAION-AI/CLAP"><img height="20" src="https://img.shields.io/badge/GitHub-CLAP-181717?logo=github&amp;logoColor=white" alt="CLAP"></a> |
+| LPAPS distance ↓ | Perceptual distance between audio representations from a pretrained feature network. | Music; Audio | Source audio; aligned non-edited regions for local comparison. | <a href="https://arxiv.org/abs/2402.10009"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/HilaManor/AudioEditingCode#evaluation"><img height="20" src="https://img.shields.io/badge/GitHub-LPAPS-181717?logo=github&amp;logoColor=white" alt="LPAPS"></a> |
+
+#### Temporal and Structural Consistency
+
+| Metric | What it measures | Audio Modalities | Reference / Inputs | Paper / Standard | Code / Model |
+|---|---|---|---|---|---|
+| Boundary error ↓ | Mean or median absolute timing error of predicted speech-segment boundaries. | Speech | Manual boundary annotations and predicted boundaries, in the same time unit. | <a href="https://eprints.whiterose.ac.uk/id/eprint/210215/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper"></a> |  |
+| Word-level Dynamic Time Warping (WDTW) ↓ | Length-normalized DTW distance over matched word segments in source and edited speech. | Speech | Source and edited speech; both transcripts and word-level forced alignments. | <a href="https://arxiv.org/abs/2604.16056"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> |  |
+| Melody accuracy ↑ | Frame-wise agreement of the dominant pitch class between reference and edited music. | Music | Reference melody/audio; aligned pitch-class sequences. | <a href="https://arxiv.org/abs/2507.11096"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/billsioros/EditGen/tree/master/notebooks/evaluation"><img height="20" src="https://img.shields.io/badge/GitHub-EditGen-181717?logo=github&amp;logoColor=white" alt="EditGen"></a> |
+| F0 Pearson correlation ↑ | Correlation between reference and output vocal-pitch contours. | Music (vocals) | Reference vocal audio; aligned F0 contours extracted with the same model. | <a href="https://arxiv.org/abs/2603.24589"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/Dream-High/RMVPE"><img height="20" src="https://img.shields.io/badge/GitHub-RMVPE-181717?logo=github&amp;logoColor=white" alt="Pitch extractor"></a><br>Pitch extractor |
+| Chroma similarity / Chroma DTW similarity ↑ | Pitch-class distribution similarity, or frame-wise similarity after DTW alignment. | Music | Source/reference music; consistently extracted chromagrams. | <a href="https://arxiv.org/abs/2512.14629"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/Yashvishe13/MuseCPEval/blob/main/musecpeval/metrics/harmony_tonality.py"><img height="20" src="https://img.shields.io/badge/GitHub-MuseCPEval-181717?logo=github&amp;logoColor=white" alt="MuseCPEval"></a> |
+| Beat F1 ↑ | Precision–recall balance of matching beat timestamps within a 70 ms tolerance. | Music | Reference and output beat timestamps. | <a href="https://arxiv.org/abs/2512.14629"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/Yashvishe13/MuseCPEval/blob/main/musecpeval/metrics/rhythm_meter.py"><img height="20" src="https://img.shields.io/badge/GitHub-MuseCPEval-181717?logo=github&amp;logoColor=white" alt="MuseCPEval"></a> |
+| Dynamics correlation ↑ | Frame-wise Pearson correlation of reference and output loudness trajectories. | Music | Reference dynamics/audio; aligned loudness trajectories. | <a href="https://arxiv.org/abs/2507.11096"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/billsioros/EditGen/tree/master/notebooks/evaluation"><img height="20" src="https://img.shields.io/badge/GitHub-EditGen-181717?logo=github&amp;logoColor=white" alt="EditGen"></a> |
+| Structural pairwise F-measure / ARI ↑ | Agreement of musical section assignments, with ARI correcting for chance agreement. | Music | Source/reference and output segmentations in a shared time frame. | <a href="https://arxiv.org/abs/2512.14629"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/Yashvishe13/MuseCPEval/blob/main/musecpeval/metrics/structural_form.py"><img height="20" src="https://img.shields.io/badge/GitHub-MuseCPEval-181717?logo=github&amp;logoColor=white" alt="MuseCPEval"></a> |
+| Event Sequence Score (ESS) ↑ | Kendall-style rank agreement between the described and detected event order. | Audio | Desired event ordering; onset estimates from separated event tracks. | <a href="https://aclanthology.org/2025.acl-long.1147/"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper"></a> |  |
+
+#### Audio Quality and Naturalness
+
+| Metric | What it measures | Audio Modalities | Reference / Inputs | Paper / Standard | Code / Model |
+|---|---|---|---|---|---|
+| MOS / CMOS ↑ | Human ratings of output quality or comparative quality against another recording. | Speech; Music; Audio | Listeners and a task-specific rating protocol; comparison audio for CMOS. | <a href="https://www.itu.int/rec/T-REC-P.800/en"><img height="20" src="https://img.shields.io/badge/ITU-Standard-brightgreen" alt="Standard"></a> | <a href="https://github.com/microsoft/P.808"><img height="20" src="https://img.shields.io/badge/GitHub-P.808-181717?logo=github&amp;logoColor=white" alt="Speech listening tests"></a><br>Speech listening tests |
+| MOSNet predicted MOS ↑ | Automatic prediction of speech naturalness ratings, developed for voice conversion. | Speech | Edited speech. | <a href="https://arxiv.org/abs/1904.08352"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/lochenchou/MOSNet"><img height="20" src="https://img.shields.io/badge/GitHub-MOSNet-181717?logo=github&amp;logoColor=white" alt="MOSNet"></a> |
+| UTMOSv2 predicted MOS ↑ | Predicted naturalness MOS, developed for high-quality synthetic speech. | Speech | Edited speech. | <a href="https://arxiv.org/abs/2409.09305"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/sarulab-speech/UTMOSv2"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a><br><a href="https://huggingface.co/sarulab-speech/UTMOSv2"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="HF Model"></a> |
+| SpeechJudge-GRM (pairwise) | Paired naturalness ratings and preference, accompanied by a generated explanation. | Speech | Target transcript and two candidate speech recordings for the same text. | <a href="https://arxiv.org/abs/2511.07931"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/AmphionTeam/SpeechJudge"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a><br><a href="https://huggingface.co/RMSnow/SpeechJudge-GRM"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="HF Model"></a> |
+| DNSMOS P.835 ↑ | Predicted speech-signal, background-noise and overall quality scores. | Speech | Edited speech. | <a href="https://arxiv.org/abs/2110.01763"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/microsoft/DNS-Challenge/tree/master/DNSMOS"><img height="20" src="https://img.shields.io/badge/GitHub-DNSMOS-181717?logo=github&amp;logoColor=white" alt="DNSMOS"></a> |
+| NISQA ↑ | Predicted overall speech quality and degradation dimensions; NISQA-TTS targets synthetic-speech naturalness. | Speech | Edited speech; the appropriate NISQA checkpoint. | <a href="https://arxiv.org/abs/2104.09494"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/gabrielmittag/NISQA"><img height="20" src="https://img.shields.io/badge/GitHub-NISQA-181717?logo=github&amp;logoColor=white" alt="NISQA"></a> |
+| PAM ↑ | No-reference audio quality from an audio–language model using contrasting positive and negative quality prompts. | Speech; Music; Audio | Edited audio; fixed quality prompts and the PAM implementation's MS-CLAP backbone. | <a href="https://arxiv.org/abs/2402.00282"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/soham97/PAM"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a> |
+| PESQ ↑ | Reference-based perceptual speech quality after degradation or restoration. | Speech | Corresponding clean target speech; 8 kHz narrowband or 16 kHz wideband mode. | <a href="https://www.itu.int/rec/T-REC-P.862/en"><img height="20" src="https://img.shields.io/badge/ITU-Standard-brightgreen" alt="Standard"></a> | <a href="https://github.com/ludlows/PESQ"><img height="20" src="https://img.shields.io/badge/GitHub-PESQ-181717?logo=github&amp;logoColor=white" alt="PESQ"></a> |
+| STOI ↑ | Estimated intelligibility of degraded or enhanced speech. | Speech | Time-aligned clean target speech. | <a href="https://sps.ewi.tudelft.nl/pubs/Taal2010.pdf"><img height="20" src="https://img.shields.io/badge/Paper-Link-brightgreen" alt="Paper"></a> | <a href="https://github.com/mpariente/pystoi"><img height="20" src="https://img.shields.io/badge/GitHub-pystoi-181717?logo=github&amp;logoColor=white" alt="pystoi"></a> |
+| SI-SDR ↑ | Target-signal reconstruction fidelity after compensating for a global scale difference. | Speech; Music; Audio | Time-aligned target waveform or isolated target source. | <a href="https://arxiv.org/abs/1811.02508"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/Lightning-AI/torchmetrics/blob/master/src/torchmetrics/functional/audio/sdr.py"><img height="20" src="https://img.shields.io/badge/GitHub-TorchMetrics-181717?logo=github&amp;logoColor=white" alt="TorchMetrics"></a> |
+| NOMAD distance ↓ | Perceptual speech degradation measured in a learned embedding space. | Speech | Clean speech references; matching linguistic content is not required. | <a href="https://arxiv.org/abs/2309.16284"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/alessandroragano/nomad"><img height="20" src="https://img.shields.io/badge/GitHub-NOMAD-181717?logo=github&amp;logoColor=white" alt="NOMAD"></a> |
+| SpeechBERTScore ↑ | Reference-aware speech quality proxy using greedy matching of self-supervised speech features. | Speech | Natural reference speech; a fixed encoder, layer and precision/recall/F1 variant. | <a href="https://arxiv.org/abs/2401.16812"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/Takaaki-Saeki/DiscreteSpeechMetrics"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a> |
+| Fréchet Audio Distance (FAD) ↓ | Distance between output and reference audio-embedding distributions. | Music; Audio | Reference audio collection; the same embedding backbone and preprocessing. | <a href="https://arxiv.org/abs/1812.08466"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/microsoft/fadtk"><img height="20" src="https://img.shields.io/badge/GitHub-FADtk-181717?logo=github&amp;logoColor=white" alt="FADtk"></a> |
+
+#### Multi-dimensional Evaluators
+
+Reusable models and toolkits for multi-dimensional assessment of editing results and audio aesthetics.
+
+| Evaluator | Audio Modalities | Evaluation Dimensions | Reference / Inputs | Paper | Code / Model |
+|---|---|---|---|---|---|
+| AuditEval (SSL / LLM) | Audio | Quality, editing relevance and faithfulness to the source. | Source and edited audio; original and target descriptions. | <a href="https://arxiv.org/abs/2508.11966"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/NKU-HLT/AuditEval"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a><br><a href="https://modelscope.cn/models/YuhangJia/AuditEval/summary"><img height="20" src="https://img.shields.io/badge/ModelScope-Models-624AFF" alt="ModelScope"></a> |
+| MuseCPEval | Music | Harmony, rhythm, structure and melody preservation, with additional timbre metrics in the toolkit. | Source and edited music; selected musical attributes to preserve. | <a href="https://arxiv.org/abs/2512.14629"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/Yashvishe13/MuseCPEval"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a> |
+| MMAE rubric evaluator (Qwen3-Omni) | Speech; Music; Audio | Instruction Following Rate (IFR), Consistency Rate (CR) and Exact Match Rate (EMR). | Source/output audio, editing instructions and sample-specific MMAE rubrics. | <a href="https://arxiv.org/abs/2606.07229"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/ddlBoJack/MMAE/tree/main/eval"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a> |
+| Audiobox Aesthetics | Speech; Music; Audio | Content Enjoyment (CE), Content Usefulness (CU), Production Complexity (PC) and Production Quality (PQ). | Edited audio only. | <a href="https://arxiv.org/abs/2502.05139"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/facebookresearch/audiobox-aesthetics"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a><br><a href="https://huggingface.co/facebook/audiobox-aesthetics"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="HF Model"></a> |
+| SongEval scoring model | Music (songs) | Overall coherence, memorability, vocal breathing/phrasing naturalness, structural clarity and overall musicality. | Full-length song audio with vocals and accompaniment. | <a href="https://arxiv.org/abs/2505.10793"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/ASLP-lab/SongEval"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a><br><a href="https://github.com/ASLP-lab/SongEval/tree/main/ckpt"><img height="20" src="https://img.shields.io/badge/GitHub-Weights-181717?logo=github&amp;logoColor=white" alt="Weights"></a> |
+| MuseCritic | Music (songs) | Coherence, musicality, memorability, structural clarity and vocal naturalness; returns scores and a natural-language critique. | Full-length song audio; the released aesthetic rubric. | <a href="https://arxiv.org/abs/2608.11755"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv"></a> | <a href="https://github.com/WuqnEl/MuseCritic"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub"></a><br><a href="https://huggingface.co/WuqnEl/MuseCritic"><img height="20" src="https://img.shields.io/badge/Hugging_Face-Model-FFD21E?logo=huggingface&amp;logoColor=black" alt="HF Model"></a> |
 
 ---
 
-## 🔮 Systemization Challenges and Future Directions
+<a id="challenges-and-future-directions"></a>
+
+## 🔮 Challenges and Future Directions
 
 Foundation-model-based audio editing still faces several system-level challenges:
 
 1. **Complex editing.**  
-   Real-world recordings entangle semantic events, speaker identity, acoustic texture, background ambience, rhythm, spatial cues, and reverberation. Future systems should support object localization, attribute-level modification, and non-target preservation across speech, music, and general audio.
-
-2. **Robustness under open-domain conditions.**  
-   Editing models must remain stable when audio contains noise, reverberation, overlapping sources, long-range dependencies, or ambiguous user intents. Improving instruction grounding, long-context modeling, iterative refinement, self-verification, retrieval-augmented editing, and multi-stage correction are promising directions.
-
-3. **Faithful and specific evaluation.**  
-   Current protocols often conflate generation quality with editing quality. Reliable benchmarks should provide explicit annotations of target regions, edit operations, preservation regions, and control signals, enabling separate measurement of edit success and non-target preservation.
-
+   Real-world audio entangles semantic events, speaker identity, acoustic attributes, background ambience, rhythm, spatial cues, and reverberation. Future systems should support precise source/event localization, attribute-level modification, and reliable preservation of non-target content across speech, music, and general audio.
+2. **Robustness in open-domain settings.**  
+   Editing models should remain reliable under noise, reverberation, overlapping sources, long-form context, and ambiguous instructions. Better instruction grounding, long-context modeling, iterative refinement, and self-verification are important directions toward robust real-world editing.
+3. **Faithful and editing-specific evaluation.**  
+   Existing evaluation often mixes generation quality with editing quality. Future benchmarks should explicitly annotate edit targets, operations, preservation regions, and relevant control signals, allowing edit success and non-target preservation to be evaluated separately.
 4. **Safety, copyright, and misuse prevention.**  
-   Audio editing systems can realistically alter speech content, speaker identity, emotion, background sounds, and music. Watermarking, provenance tracking, edited-audio detection, and responsible data licensing are important for practical deployment.
+   Modern editing systems can realistically modify speech content, speaker identity, emotion, environmental sounds, and music. Practical deployment therefore requires complementary mechanisms for provenance, watermarking, manipulated-audio detection, and responsible data licensing.
 
 ---
 
