@@ -104,7 +104,7 @@ Accordingly, we do not cover works primarily focused on audio generation, nor do
 
 ### 🗂️ Taxonomy Overview
 
-![Taxonomy of Audio Editing Tasks](taxonomy_overview.png)
+![Taxonomy of Audio Editing Tasks](assets/taxonomy_overview.png)
 
 *Figure 1: Taxonomy of audio editing tasks.*
 
@@ -181,7 +181,7 @@ Instruction-conditioned and multimodal interfaces for audio editing provide high
 Training-based approaches refer to audio editing methods that learn editing behaviors from supervised pairs, pseudo-pairs, or instruction-based triplets before inference. These methods explicitly optimize editing objectives, condition following, and preservation constraints, enabling stable and controllable editing. We group existing works into three categories based on their supervision and conditioning mechanisms, and discuss their core methods and functional scopes.
 
 <p align="center">
-  <img src="train-based.png" alt="Overview of training-based audio editing methods" width="900">
+  <img src="assets/train-based.png" alt="Overview of training-based audio editing methods" width="900">
 </p>
 
 <p align="center">
@@ -205,7 +205,7 @@ Training-based approaches refer to audio editing methods that learn editing beha
 Training-free approaches adapt pretrained audio generative models to editing without parameter updates. They operate by manipulating inference-time mechanisms, such as inversion, attention control, prompt or guidance adjustment, and mask-based constraints. We group existing methods into three common categories, which are often combined to improve localization, preservation, and controllability. Since token-based autoregressive models are less naturally suited to training-free editing, this section mainly focuses on non-autoregressive paradigms, especially diffusion-based foundation models.
 
 <p align="center">
-  <img src="train-free.png" alt="Overview of training-free audio editing methods" width="900">
+  <img src="assets/train-free.png" alt="Overview of training-free audio editing methods" width="900">
 </p>
 
 <p align="center">
@@ -611,6 +611,6 @@ This repo is meant to keep growing. If an audio editing model, dataset, or bench
 
 Unless otherwise noted below, original content created for this repository is licensed under the [MIT License](LICENSE).
 
-The [survey paper](https://arxiv.org/abs/2606.23139) and content reproduced or adapted from it, including `taxonomy_overview.png`, `train-based.png`, and `train-free.png`, remain under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). The MIT license does not relicense these materials.
+The [survey paper](https://arxiv.org/abs/2606.23139) and content reproduced or adapted from it, including `assets/taxonomy_overview.png`, `assets/train-based.png`, and `assets/train-free.png`, remain under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). The MIT license does not relicense these materials.
 
 Linked third-party papers, code, models, model weights, datasets, and tools are governed by their respective licenses.

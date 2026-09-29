@@ -104,7 +104,7 @@
 
 ### 🗂️ 分类体系概览
 
-![音频编辑任务分类体系](taxonomy_overview.png)
+![音频编辑任务分类体系](assets/taxonomy_overview.png)
 
 *图 1：音频编辑任务分类体系。*
 
@@ -181,7 +181,7 @@
 需要训练的音频编辑方法在推理前，利用有监督配对、伪配对或指令三元组学习编辑行为。这些方法显式优化编辑目标、条件遵循和保留约束，从而实现稳定、可控的编辑。我们根据监督信号与条件机制，将现有工作归纳为三类，并讨论其核心方法与功能范围。
 
 <p align="center">
-  <img src="train-based.png" alt="需要训练的音频编辑方法概览" width="900">
+  <img src="assets/train-based.png" alt="需要训练的音频编辑方法概览" width="900">
 </p>
 
 <p align="center">
@@ -205,7 +205,7 @@
 无需训练的音频编辑方法在不更新参数的情况下，将预训练音频生成模型用于编辑。它们通过反演、注意力控制、提示或引导调整，以及基于掩码的约束等推理时机制完成编辑。我们将现有方法归纳为三类常见机制，这些机制通常会组合使用，以提升定位、内容保留和可控性。由于基于 token 的自回归模型较难直接用于无需训练的编辑，本节主要聚焦非自回归范式，尤其是基于扩散的基础模型。
 
 <p align="center">
-  <img src="train-free.png" alt="无需训练的音频编辑方法概览" width="900">
+  <img src="assets/train-free.png" alt="无需训练的音频编辑方法概览" width="900">
 </p>
 
 <p align="center">
@@ -611,6 +611,6 @@
 
 除下文另有说明外，本仓库的原创内容采用 [MIT 许可证](LICENSE)。
 
-[综述论文](https://arxiv.org/abs/2606.23139)及转载或改编自论文的内容（包括 `taxonomy_overview.png`、`train-based.png` 和 `train-free.png`）仍采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。MIT 许可证不会改变这些材料的许可条款。
+[综述论文](https://arxiv.org/abs/2606.23139)及转载或改编自论文的内容（包括 `assets/taxonomy_overview.png`、`assets/train-based.png` 和 `assets/train-free.png`）仍采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。MIT 许可证不会改变这些材料的许可条款。
 
 所链接的第三方论文、代码、模型、模型权重、数据集和工具，均遵循各自的许可证。

@@ -104,7 +104,7 @@
 
 ### 🗂️ 분류 체계 개요
 
-![오디오 편집 작업 분류 체계](taxonomy_overview.png)
+![오디오 편집 작업 분류 체계](assets/taxonomy_overview.png)
 
 *그림 1: 오디오 편집 작업 분류 체계.*
 
@@ -181,7 +181,7 @@
 학습 기반 오디오 편집 방법은 추론 전에 지도 학습용 쌍, 의사 쌍 또는 지시 기반 삼중항으로 편집 동작을 학습합니다. 편집 목표, 조건 준수, 보존 제약을 명시적으로 최적화하여 안정적이고 제어 가능한 편집을 구현합니다. 본 서베이는 감독 신호와 조건화 방식에 따라 기존 연구를 세 범주로 나누고 핵심 방법과 적용 범위를 논의합니다.
 
 <p align="center">
-  <img src="train-based.png" alt="학습 기반 오디오 편집 방법 개요" width="900">
+  <img src="assets/train-based.png" alt="학습 기반 오디오 편집 방법 개요" width="900">
 </p>
 
 <p align="center">
@@ -205,7 +205,7 @@
 추가 학습이 필요 없는 오디오 편집 방법은 모델 파라미터를 갱신하지 않고 사전 학습된 오디오 생성 모델을 편집에 활용합니다. 역변환, 어텐션 제어, 프롬프트·가이던스 조정, 마스크 기반 제약 등 추론 단계의 메커니즘을 조작합니다. 기존 방법을 세 가지 일반적인 메커니즘으로 나누며, 이들은 위치 지정, 보존 성능, 제어 가능성을 높이기 위해 함께 사용되기도 합니다. 토큰 기반 자기회귀 모델은 추가 학습 없는 편집에 상대적으로 덜 적합하므로, 이 절에서는 비자기회귀 패러다임, 특히 확산 기반 파운데이션 모델에 초점을 맞춥니다.
 
 <p align="center">
-  <img src="train-free.png" alt="추가 학습 없는 오디오 편집 방법 개요" width="900">
+  <img src="assets/train-free.png" alt="추가 학습 없는 오디오 편집 방법 개요" width="900">
 </p>
 
 <p align="center">
@@ -611,6 +611,6 @@
 
 아래에 별도로 명시한 경우를 제외하고, 이 저장소에서 작성한 원본 콘텐츠에는 [MIT 라이선스](LICENSE)가 적용됩니다.
 
-[서베이 논문](https://arxiv.org/abs/2606.23139)과 논문에서 재사용하거나 각색한 콘텐츠(`taxonomy_overview.png`, `train-based.png`, `train-free.png` 포함)에는 계속 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)이 적용됩니다. MIT 라이선스가 이러한 자료의 기존 라이선스를 변경하지는 않습니다.
+[서베이 논문](https://arxiv.org/abs/2606.23139)과 논문에서 재사용하거나 각색한 콘텐츠(`assets/taxonomy_overview.png`, `assets/train-based.png`, `assets/train-free.png` 포함)에는 계속 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)이 적용됩니다. MIT 라이선스가 이러한 자료의 기존 라이선스를 변경하지는 않습니다.
 
 연결된 제3자 논문, 코드, 모델, 모델 가중치, 데이터셋, 도구에는 각각의 라이선스가 적용됩니다.
