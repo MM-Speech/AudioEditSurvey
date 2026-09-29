@@ -61,6 +61,7 @@
    - [분류 체계 개요](#taxonomy-overview)
    - [분류 체계 상세](#taxonomy-details)
    - [대표적인 오디오 편집 방법](#representative-audio-editing-methods)
+     - [Unified](#methods-unified) · [Speech](#methods-speech) · [Music](#methods-music) · [Audio](#methods-audio)
 4. [오디오 편집을 위한 파운데이션 모델](#foundation-models-for-audio-editing)
 5. [학습 기반 오디오 편집](#training-based-audio-editing)
 6. [추가 학습 없는 오디오 편집](#training-free-audio-editing)
@@ -127,28 +128,62 @@
 
 ### 📚 대표적인 오디오 편집 방법
 
-| 모델 | 범주 | 논문 링크 |
-| --- | --- | --- |
-| FluentSpeech | 학습 기반 / 확산 | https://arxiv.org/abs/2305.13612 |
-| VoiceCraft | 학습 기반 / 코덱 | https://arxiv.org/abs/2403.16973 |
-| uSee | 학습 기반 / 확산 | https://arxiv.org/abs/2310.00900 |
-| SpeechX | 학습 기반 / 코덱 | https://arxiv.org/abs/2308.06873 |
-| CosyEdit | 학습 기반 / 코덱 | https://arxiv.org/abs/2601.05329 |
-| AUDIT | 학습 기반 / 확산 | https://arxiv.org/abs/2304.00830 |
-| SAO-Instruct | 학습 기반 / 확산 | https://arxiv.org/abs/2510.22795 |
-| Non-Rigid Prompt Edit | 학습 기반 / 확산 | https://arxiv.org/abs/2310.12858 |
-| InstructME | 학습 기반 / 확산 | https://arxiv.org/abs/2308.14360 |
-| Instruct-MusicGen | 학습 기반 / 코덱 | https://arxiv.org/abs/2405.18386 |
-| AST | 추가 학습 없음 / 확산 | https://arxiv.org/abs/2604.16056 |
-| EdiTTS | 추가 학습 없음 / 확산 | https://arxiv.org/abs/2110.02584 |
-| DDPM Inversion | 추가 학습 없음 / 확산 | https://arxiv.org/abs/2402.10009 |
-| AudioEditor | 추가 학습 없음 / 확산 | https://arxiv.org/abs/2409.12466 |
-| PPAE | 추가 학습 없음 / 확산 | https://arxiv.org/abs/2406.04350 |
-| AudioMorphix | 추가 학습 없음 / 확산 | https://arxiv.org/abs/2505.16076 |
-| MelodyFlow | 추가 학습 없음 / 플로 | https://arxiv.org/abs/2407.03648 |
-| MEDIC | 추가 학습 없음 / 확산 | https://arxiv.org/abs/2407.13220 |
-| MusicMagus | 추가 학습 없음 / 확산 | https://arxiv.org/abs/2402.06178 |
-| MusRec | 추가 학습 없음 / 플로 | https://arxiv.org/abs/2511.04376 |
+편집 구현과 모델 가중치가 공개된 대표 연구를 정리했습니다. 각 프로젝트의 라이선스가 적용됩니다. 편집 유형은 본 서베이의 [분류 체계](#taxonomy-details)를 따르며, **Unified**는 여러 오디오 유형을 지원하는 편집 모델을 모으며, 지원 유형은 표에 명시합니다. **기반 모델** 링크는 편집기에 사용하는 사전학습 백본을, **어댑터** 링크는 추가로 학습한 가중치를 가리킵니다.
+
+<a id="methods-unified"></a>
+
+#### 통합 모델 (Unified)
+
+| 모델 | 오디오 유형 | 편집 유형 | 모델 구조 | 논문 | 코드 | 모델 가중치 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Audio-Omni | Speech; Music; Audio | 인스턴스: 추가·삭제·추출·음원 변환 | MLLM + Rectified Flow DiT | <a href="https://arxiv.org/abs/2604.10708"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ZeyueT/Audio-Omni"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/HKUSTAudio/Audio-Omni) |
+| AudioMorphix | Speech; Music; Audio | 의미: 음높이·시간 신축<br>인스턴스: 추가·삭제·교체·시간 이동 | 확산 U-Net(Tango / AudioLDM) | <a href="https://arxiv.org/abs/2505.16076"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 기반 모델(Tango 2)](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 기반 모델(AudioLDM)](https://huggingface.co/cvssp/audioldm-l-full) |
+| AuK / AuK-Flash | Speech; Music | 음향: 복원·음량<br>의미: 단어·가사·표현<br>인스턴스: 음색·음원 추출 | MLLM + Rectified Flow DiT | <a href="https://arxiv.org/abs/2609.08936"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/Tencent-Hunyuan/AuK"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 AuK](https://huggingface.co/tencent/AuK)<br>[🤗 Flash](https://huggingface.co/tencent/AuK-Flash) |
+| Vevo2 | Speech; Music | 의미: 내용·가사·운율·스타일<br>인스턴스: 화자·가수 변환 | 코덱 언어 모델 + 플로 매칭 디코더 | <a href="https://arxiv.org/abs/2508.16332"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/open-mmlab/Amphion/tree/main/models/svc/vevo2"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/RMSnow/Vevo2) |
+| DirectAudioEdit | Music; Audio | 인스턴스: 텍스트 기반 이벤트 교체·추가·삭제 | 확산 U-Net(Tango 2 / AudioLDM2) | <a href="https://arxiv.org/abs/2606.07356"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NiuTrans/DirectAudioEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 기반 모델(Tango 2)](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 기반 모델(일반 오디오)](https://huggingface.co/cvssp/audioldm2) |
+| DDPM Inversion (ZETA) | Music; Audio | 의미: 음악 스타일<br>인스턴스: 악기·소리 이벤트 변경 | 확산 U-Net(AudioLDM2) | <a href="https://arxiv.org/abs/2402.10009"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/HilaManor/AudioEditingCode"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 기반 모델(일반 오디오)](https://huggingface.co/cvssp/audioldm2)<br>[🤗 기반 모델(음악)](https://huggingface.co/cvssp/audioldm2-music) |
+
+<a id="methods-speech"></a>
+
+#### 음성 모델 (Speech)
+
+| 모델 | 편집 유형 | 모델 구조 | 논문 | 코드 | 모델 가중치 |
+| --- | --- | --- | --- | --- | --- |
+| Ming-UniAudio-Edit | 음향: 잡음 제거·음량<br>의미: 내용·운율·감정·방언 | 연속 토큰 언어 모델 + 확산 헤드 | <a href="https://arxiv.org/abs/2511.05516"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/inclusionAI/Ming-UniAudio"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/inclusionAI/Ming-UniAudio-16B-A3B-Edit) |
+| Step-Audio-EditX | 의미: 감정·발화 스타일·준언어적 단서·발음 | 코덱 언어 모델 + 플로 매칭 디코더 | <a href="https://arxiv.org/abs/2511.03601"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/stepfun-ai/Step-Audio-EditX"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/stepfun-ai/Step-Audio-EditX) |
+| CosyEdit | 의미: 단어 삽입·삭제·교체 | 코덱 언어 모델 + 플로 매칭 디코더 | <a href="https://arxiv.org/abs/2601.05329"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/CJY1018/CosyEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/CJY/CosyEdit) |
+| VoiceCraft-X | 의미: 다국어 내용 편집 | 코덱 언어 모델(자기회귀 인필링) | <a href="https://arxiv.org/abs/2511.12347"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/zszheng147/VoiceCraft-X"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/zhisheng01/VoiceCraft-X) |
+| VoiceCraft | 의미: 단어 삽입·삭제·교체 | 코덱 언어 모델(자기회귀 인필링) | <a href="https://arxiv.org/abs/2403.16973"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/jasonppy/VoiceCraft"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/pyp1/VoiceCraft) |
+| SSR-Speech | 의미: 단어 삽입·삭제·교체 | 코덱 언어 모델(자기회귀 인필링) | <a href="https://arxiv.org/abs/2409.07556"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/WangHelin1997/SSR-Speech"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 영어](https://huggingface.co/westbrook/SSR-Speech-English)<br>[🤗 중국어](https://huggingface.co/westbrook/SSR-Speech-Mandarin) |
+| F5-TTS | 의미: 국소 내용 교체·인필링 | 플로 매칭 DiT | <a href="https://arxiv.org/abs/2410.06885"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/SWivid/F5-TTS/blob/main/src/f5_tts/infer/speech_edit.py"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/SWivid/F5-TTS) |
+| FluentSpeech | 의미: 내용 편집·말더듬 및 비유창성 교정 | 확산 모델(문맥 인식 잡음 제거기) | <a href="https://arxiv.org/abs/2305.13612"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/Zain-Jiang/Speech-Editing-Toolkit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📁 가중치](https://drive.google.com/drive/folders/1saqpWc4vrSgUZvRvHkf2QbwWSikMTyoo) |
+| EdiTTS | 의미: 합성 음성의 내용·음높이 편집 | 스코어 기반 확산(Grad-TTS) | <a href="https://arxiv.org/abs/2110.02584"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/neosapience/editts"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📦 기반 모델](https://github.com/neosapience/editts/tree/master/checkpts) |
+
+<a id="methods-music"></a>
+
+#### 음악 모델 (Music)
+
+| 모델 | 편집 유형 | 모델 구조 | 논문 | 코드 | 모델 가중치 |
+| --- | --- | --- | --- | --- | --- |
+| YingMusic-Singer-Plus | 의미: 가사<br>인스턴스: 가수 음색 교체 | 플로 매칭 DiT | <a href="https://arxiv.org/abs/2603.24589"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ASLP-lab/YingMusic-Singer-Plus"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/ASLP-lab/YingMusic-Singer-Plus) |
+| ACE-Step 1.5 | 의미: 스타일·국소 리페인팅<br>인스턴스: 트랙 추출·추가(base 버전) | 언어 모델 + 플로 매칭 DiT | <a href="https://arxiv.org/abs/2602.00744"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ace-step/ACE-Step-1.5"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Turbo](https://huggingface.co/ACE-Step/Ace-Step1.5)<br>[🤗 Base 버전](https://huggingface.co/ACE-Step/acestep-v15-base) |
+| Instruct-MusicGen | 인스턴스: 스템 추가·삭제·추출 | 코덱 언어 모델(MusicGen) + 어댑터 | <a href="https://arxiv.org/abs/2405.18386"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ldzhangyx/instruct-MusicGen"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 공개 데이터 재학습 버전](https://huggingface.co/ldzhangyx/instruct-MusicGen) |
+| MusicGen-Stem | 인스턴스: 스템 교체·추가(베이스·드럼·기타 음원) | 다중 스트림 코덱 언어 모델 | <a href="https://arxiv.org/abs/2501.01757"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/simonrouard/audiocraft/tree/multistem"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/facebook/musicgen-stem-6cb) |
+| MelodyFlow | 의미: 장르·분위기·스타일<br>인스턴스: 악기 구성 | 플로 매칭 DiT | <a href="https://arxiv.org/abs/2407.03648"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/facebook/MelodyFlow/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 가중치](https://huggingface.co/facebook/melodyflow-t24-30secs) |
+| AP-Adapter | 의미: 장르·스타일 변환<br>인스턴스: 악기 교체 | 확산 U-Net + 오디오 프롬프트 어댑터 | <a href="https://arxiv.org/abs/2407.16564"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/fundwotsai2001/AP-adapter"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📁 어댑터](https://drive.google.com/drive/folders/1LkIe3-_4nqvDJQqEgglbyj9AMFkn0TLd)<br>[🤗 기반 모델](https://huggingface.co/cvssp/audioldm2-large) |
+| AnchorSteer | 의미: 장르·스타일<br>인스턴스: 악기 변경 | 확산 DiT + 구조·개념 어댑터 | <a href="https://arxiv.org/abs/2605.31053"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/hengtsune1024/AnchorSteer"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 개념 가중치](https://huggingface.co/heng1024/AnchorSteer-weights)<br>[📁 구조 어댑터](https://drive.google.com/drive/folders/1Q9B333jcq1czA11JKTbM-DHANJ8YqGbP)<br>[🤗 기반 모델(약관 동의)](https://huggingface.co/stabilityai/stable-audio-open-1.0) |
+
+<a id="methods-audio"></a>
+
+#### 일반 오디오 모델 (Audio)
+
+| 모델 | 편집 유형 | 모델 구조 | 논문 | 코드 | 모델 가중치 |
+| --- | --- | --- | --- | --- | --- |
+| MMEdit | 음향: 음량<br>인스턴스: 이벤트 추가·삭제·교체·순서 변경 | 오디오 언어 모델 + 확산 MMDiT | <a href="https://arxiv.org/abs/2512.20339"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ty0402/MMEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/CocoBro/MMEdit) |
+| SAO-Instruct | 음향: 필터링·잡음 제거·복원<br>의미: 음높이·속도<br>인스턴스: 이벤트 조작 | 확산 DiT(Stable Audio Open) | <a href="https://arxiv.org/abs/2510.22795"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ETH-DISCO/sao-instruct"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/disco-eth/sao-instruct) |
+| SmartDJ-Editor | 음향: 음량·잔향·스펙트럼 색채<br>인스턴스: 이벤트 추가·삭제·추출·위치 변경 | 확산 Transformer(U-DiT) | <a href="https://arxiv.org/abs/2509.21625"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/penn-waves-lab/SmartDJ"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 편집기 가중치](https://huggingface.co/ztlan/SmartDJ) |
+| AudioEditor | 인스턴스: 이벤트 추가·삭제·교체 | 확산 U-Net(Auffusion) | <a href="https://arxiv.org/abs/2409.12466"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NKU-HLT/AudioEditor"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 기반 모델](https://huggingface.co/auffusion/auffusion-full-no-adapter) |
+| CoherentAVEdit | 인스턴스: 비디오 조건부 소리 이벤트 교체 | 플로 매칭 Transformer(MMAudio) | <a href="https://arxiv.org/abs/2512.07209"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/SonyResearch/CoherentAVEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 가중치](https://huggingface.co/masato-a-ishii/CoherentAVEdit) |
 
 ---
 

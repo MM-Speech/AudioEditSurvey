@@ -61,6 +61,7 @@ This repository is the official repository for **Audio Editing in the Era of Fou
    - [Taxonomy Overview](#taxonomy-overview)  
    - [Taxonomy Details](#taxonomy-details)  
    - [Representative Audio Editing Methods](#representative-audio-editing-methods)  
+     - [Unified](#methods-unified) · [Speech](#methods-speech) · [Music](#methods-music) · [Audio](#methods-audio)
 4. [Foundation Models for Audio Editing](#foundation-models-for-audio-editing)  
 5. [Training-based Audio Editing](#training-based-audio-editing)  
 6. [Training-free Audio Editing](#training-free-audio-editing)  
@@ -127,28 +128,62 @@ Accordingly, we do not cover works primarily focused on audio generation, nor do
 
 ### 📚 Representative Audio Editing Methods
 
-| Model | Category | Paper URL |
-|---|---|---|
-| FluentSpeech | Training-based / Diffusion | https://arxiv.org/abs/2305.13612 |
-| VoiceCraft | Training-based / Codec | https://arxiv.org/abs/2403.16973 |
-| uSee | Training-based / Diffusion | https://arxiv.org/abs/2310.00900 |
-| SpeechX | Training-based / Codec | https://arxiv.org/abs/2308.06873 |
-| CosyEdit | Training-based / Codec | https://arxiv.org/abs/2601.05329 |
-| AUDIT | Training-based / Diffusion | https://arxiv.org/abs/2304.00830 |
-| SAO-Instruct | Training-based / Diffusion | https://arxiv.org/abs/2510.22795 |
-| Non-Rigid Prompt Edit | Training-based / Diffusion | https://arxiv.org/abs/2310.12858 |
-| InstructME | Training-based / Diffusion | https://arxiv.org/abs/2308.14360 |
-| Instruct-MusicGen | Training-based / Codec | https://arxiv.org/abs/2405.18386 |
-| AST | Training-free / Diffusion | https://arxiv.org/abs/2604.16056 |
-| EdiTTS | Training-free / Diffusion | https://arxiv.org/abs/2110.02584 |
-| DDPM Inversion | Training-free / Diffusion | https://arxiv.org/abs/2402.10009 |
-| AudioEditor | Training-free / Diffusion | https://arxiv.org/abs/2409.12466 |
-| PPAE | Training-free / Diffusion | https://arxiv.org/abs/2406.04350 |
-| AudioMorphix | Training-free / Diffusion | https://arxiv.org/abs/2505.16076 |
-| MelodyFlow | Training-free / Flow | https://arxiv.org/abs/2407.03648 |
-| MEDIC | Training-free / Diffusion | https://arxiv.org/abs/2407.13220 |
-| MusicMagus | Training-free / Diffusion | https://arxiv.org/abs/2402.06178 |
-| MusRec | Training-free / Flow | https://arxiv.org/abs/2511.04376 |
+Representative editors with publicly released implementations and model weights, subject to each project’s license. Editing types follow our [taxonomy](#taxonomy-details); **Unified** groups editors supporting multiple audio domains, with their supported domains listed in the table. **Base** links the pretrained backbone used by an editor, while **Adapter** links its additional learned weights.
+
+<a id="methods-unified"></a>
+
+#### Unified Models
+
+| Model | Audio Domain | Editing Types | Model Architecture | Paper | Code | Model |
+| --- | --- | --- | --- | --- | --- | --- |
+| Audio-Omni | Speech; Music; Audio | Instance: addition, removal, extraction, source transformation | MLLM + rectified-flow DiT | <a href="https://arxiv.org/abs/2604.10708"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ZeyueT/Audio-Omni"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/HKUSTAudio/Audio-Omni) |
+| AudioMorphix | Speech; Music; Audio | Semantic: pitch / time stretching<br>Instance: addition, removal, replacement, time shifting | Diffusion U-Net (Tango / AudioLDM) | <a href="https://arxiv.org/abs/2505.16076"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 Base (Tango 2)](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 Base (AudioLDM)](https://huggingface.co/cvssp/audioldm-l-full) |
+| AuK / AuK-Flash | Speech; Music | Acoustic: restoration, loudness<br>Semantic: words, lyrics, expression<br>Instance: timbre, source extraction | MLLM + rectified-flow DiT | <a href="https://arxiv.org/abs/2609.08936"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/Tencent-Hunyuan/AuK"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 AuK](https://huggingface.co/tencent/AuK)<br>[🤗 Flash](https://huggingface.co/tencent/AuK-Flash) |
+| Vevo2 | Speech; Music | Semantic: content, lyrics, prosody, style<br>Instance: voice / singer conversion | Codec LM + flow-matching decoder | <a href="https://arxiv.org/abs/2508.16332"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/open-mmlab/Amphion/tree/main/models/svc/vevo2"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/RMSnow/Vevo2) |
+| DirectAudioEdit | Music; Audio | Instance: text-guided event replacement / addition / removal | Diffusion U-Net (Tango 2 / AudioLDM2) | <a href="https://arxiv.org/abs/2606.07356"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NiuTrans/DirectAudioEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Base (Tango 2)](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 Base (audio)](https://huggingface.co/cvssp/audioldm2) |
+| DDPM Inversion (ZETA) | Music; Audio | Semantic: musical style<br>Instance: instrument / sound-event changes | Diffusion U-Net (AudioLDM2) | <a href="https://arxiv.org/abs/2402.10009"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/HilaManor/AudioEditingCode"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Base (audio)](https://huggingface.co/cvssp/audioldm2)<br>[🤗 Base (music)](https://huggingface.co/cvssp/audioldm2-music) |
+
+<a id="methods-speech"></a>
+
+#### Speech Models
+
+| Model | Editing Types | Model Architecture | Paper | Code | Model |
+| --- | --- | --- | --- | --- | --- |
+| Ming-UniAudio-Edit | Acoustic: denoising, loudness<br>Semantic: content, prosody, emotion, dialect | Continuous-token LM + diffusion head | <a href="https://arxiv.org/abs/2511.05516"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/inclusionAI/Ming-UniAudio"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/inclusionAI/Ming-UniAudio-16B-A3B-Edit) |
+| Step-Audio-EditX | Semantic: emotion, speaking style, paralinguistics, pronunciation | Codec LM + flow-matching decoder | <a href="https://arxiv.org/abs/2511.03601"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/stepfun-ai/Step-Audio-EditX"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/stepfun-ai/Step-Audio-EditX) |
+| CosyEdit | Semantic: word insertion, deletion, replacement | Codec LM + flow-matching decoder | <a href="https://arxiv.org/abs/2601.05329"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/CJY1018/CosyEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/CJY/CosyEdit) |
+| VoiceCraft-X | Semantic: multilingual content editing | Codec LM (autoregressive infilling) | <a href="https://arxiv.org/abs/2511.12347"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/zszheng147/VoiceCraft-X"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/zhisheng01/VoiceCraft-X) |
+| VoiceCraft | Semantic: word insertion, deletion, replacement | Codec LM (autoregressive infilling) | <a href="https://arxiv.org/abs/2403.16973"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/jasonppy/VoiceCraft"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/pyp1/VoiceCraft) |
+| SSR-Speech | Semantic: word insertion, deletion, replacement | Codec LM (autoregressive infilling) | <a href="https://arxiv.org/abs/2409.07556"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/WangHelin1997/SSR-Speech"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 English](https://huggingface.co/westbrook/SSR-Speech-English)<br>[🤗 Mandarin](https://huggingface.co/westbrook/SSR-Speech-Mandarin) |
+| F5-TTS | Semantic: local content replacement / infilling | Flow-matching DiT | <a href="https://arxiv.org/abs/2410.06885"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/SWivid/F5-TTS/blob/main/src/f5_tts/infer/speech_edit.py"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/SWivid/F5-TTS) |
+| FluentSpeech | Semantic: content editing, disfluency correction | Diffusion (context-aware denoiser) | <a href="https://arxiv.org/abs/2305.13612"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/Zain-Jiang/Speech-Editing-Toolkit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📁 Weights](https://drive.google.com/drive/folders/1saqpWc4vrSgUZvRvHkf2QbwWSikMTyoo) |
+| EdiTTS | Semantic: content / pitch edits in synthesized speech | Score-based diffusion (Grad-TTS) | <a href="https://arxiv.org/abs/2110.02584"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/neosapience/editts"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📦 Base](https://github.com/neosapience/editts/tree/master/checkpts) |
+
+<a id="methods-music"></a>
+
+#### Music Models
+
+| Model | Editing Types | Model Architecture | Paper | Code | Model |
+| --- | --- | --- | --- | --- | --- |
+| YingMusic-Singer-Plus | Semantic: lyrics<br>Instance: singer timbre replacement | Flow-matching DiT | <a href="https://arxiv.org/abs/2603.24589"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ASLP-lab/YingMusic-Singer-Plus"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/ASLP-lab/YingMusic-Singer-Plus) |
+| ACE-Step 1.5 | Semantic: style / local repainting<br>Instance: track extraction / addition (base variant) | LM + flow-matching DiT | <a href="https://arxiv.org/abs/2602.00744"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ace-step/ACE-Step-1.5"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Turbo](https://huggingface.co/ACE-Step/Ace-Step1.5)<br>[🤗 Base variant](https://huggingface.co/ACE-Step/acestep-v15-base) |
+| Instruct-MusicGen | Instance: stem addition, removal, extraction | Codec LM (MusicGen) + adapters | <a href="https://arxiv.org/abs/2405.18386"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ldzhangyx/instruct-MusicGen"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Public-data retraining](https://huggingface.co/ldzhangyx/instruct-MusicGen) |
+| MusicGen-Stem | Instance: stem replacement / addition (bass, drums, other) | Multi-stream codec LM | <a href="https://arxiv.org/abs/2501.01757"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/simonrouard/audiocraft/tree/multistem"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/facebook/musicgen-stem-6cb) |
+| MelodyFlow | Semantic: genre, mood, style<br>Instance: instrumentation | Flow-matching DiT | <a href="https://arxiv.org/abs/2407.03648"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/facebook/MelodyFlow/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 Weights](https://huggingface.co/facebook/melodyflow-t24-30secs) |
+| AP-Adapter | Semantic: genre / style transfer<br>Instance: instrument replacement | Diffusion U-Net + audio-prompt adapter | <a href="https://arxiv.org/abs/2407.16564"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/fundwotsai2001/AP-adapter"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📁 Adapter](https://drive.google.com/drive/folders/1LkIe3-_4nqvDJQqEgglbyj9AMFkn0TLd)<br>[🤗 Base](https://huggingface.co/cvssp/audioldm2-large) |
+| AnchorSteer | Semantic: genre / style<br>Instance: instrument changes | Diffusion DiT + structural/concept adapters | <a href="https://arxiv.org/abs/2605.31053"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/hengtsune1024/AnchorSteer"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Concept weights](https://huggingface.co/heng1024/AnchorSteer-weights)<br>[📁 Structure adapter](https://drive.google.com/drive/folders/1Q9B333jcq1czA11JKTbM-DHANJ8YqGbP)<br>[🤗 Base (access terms)](https://huggingface.co/stabilityai/stable-audio-open-1.0) |
+
+<a id="methods-audio"></a>
+
+#### Audio Models
+
+| Model | Editing Types | Model Architecture | Paper | Code | Model |
+| --- | --- | --- | --- | --- | --- |
+| MMEdit | Acoustic: loudness<br>Instance: event addition, removal, replacement, reordering | ALM + diffusion MMDiT | <a href="https://arxiv.org/abs/2512.20339"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ty0402/MMEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/CocoBro/MMEdit) |
+| SAO-Instruct | Acoustic: filtering, denoising, restoration<br>Semantic: pitch / rate<br>Instance: event manipulation | Diffusion DiT (Stable Audio Open) | <a href="https://arxiv.org/abs/2510.22795"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ETH-DISCO/sao-instruct"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/disco-eth/sao-instruct) |
+| SmartDJ-Editor | Acoustic: volume, reverb, spectral coloration<br>Instance: event addition, removal, extraction, relocation | Diffusion Transformer (U-DiT) | <a href="https://arxiv.org/abs/2509.21625"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/penn-waves-lab/SmartDJ"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Editor weights](https://huggingface.co/ztlan/SmartDJ) |
+| AudioEditor | Instance: event addition, deletion, replacement | Diffusion U-Net (Auffusion) | <a href="https://arxiv.org/abs/2409.12466"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NKU-HLT/AudioEditor"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Base](https://huggingface.co/auffusion/auffusion-full-no-adapter) |
+| CoherentAVEdit | Instance: video-conditioned sound-event replacement | Flow-matching Transformer (MMAudio) | <a href="https://arxiv.org/abs/2512.07209"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/SonyResearch/CoherentAVEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Weights](https://huggingface.co/masato-a-ishii/CoherentAVEdit) |
 
 ---
 

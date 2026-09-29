@@ -61,6 +61,7 @@
    - [分类体系概览](#taxonomy-overview)
    - [分类体系详解](#taxonomy-details)
    - [代表性音频编辑方法](#representative-audio-editing-methods)
+     - [Unified](#methods-unified) · [Speech](#methods-speech) · [Music](#methods-music) · [Audio](#methods-audio)
 4. [用于音频编辑的基础模型](#foundation-models-for-audio-editing)
 5. [需要训练的音频编辑](#training-based-audio-editing)
 6. [无需训练的音频编辑](#training-free-audio-editing)
@@ -127,28 +128,62 @@
 
 ### 📚 代表性音频编辑方法
 
-| 模型 | 类别 | 论文链接 |
-| --- | --- | --- |
-| FluentSpeech | 需要训练 / 扩散 | https://arxiv.org/abs/2305.13612 |
-| VoiceCraft | 需要训练 / 编解码 | https://arxiv.org/abs/2403.16973 |
-| uSee | 需要训练 / 扩散 | https://arxiv.org/abs/2310.00900 |
-| SpeechX | 需要训练 / 编解码 | https://arxiv.org/abs/2308.06873 |
-| CosyEdit | 需要训练 / 编解码 | https://arxiv.org/abs/2601.05329 |
-| AUDIT | 需要训练 / 扩散 | https://arxiv.org/abs/2304.00830 |
-| SAO-Instruct | 需要训练 / 扩散 | https://arxiv.org/abs/2510.22795 |
-| Non-Rigid Prompt Edit | 需要训练 / 扩散 | https://arxiv.org/abs/2310.12858 |
-| InstructME | 需要训练 / 扩散 | https://arxiv.org/abs/2308.14360 |
-| Instruct-MusicGen | 需要训练 / 编解码 | https://arxiv.org/abs/2405.18386 |
-| AST | 无需训练 / 扩散 | https://arxiv.org/abs/2604.16056 |
-| EdiTTS | 无需训练 / 扩散 | https://arxiv.org/abs/2110.02584 |
-| DDPM Inversion | 无需训练 / 扩散 | https://arxiv.org/abs/2402.10009 |
-| AudioEditor | 无需训练 / 扩散 | https://arxiv.org/abs/2409.12466 |
-| PPAE | 无需训练 / 扩散 | https://arxiv.org/abs/2406.04350 |
-| AudioMorphix | 无需训练 / 扩散 | https://arxiv.org/abs/2505.16076 |
-| MelodyFlow | 无需训练 / 流 | https://arxiv.org/abs/2407.03648 |
-| MEDIC | 无需训练 / 扩散 | https://arxiv.org/abs/2407.13220 |
-| MusicMagus | 无需训练 / 扩散 | https://arxiv.org/abs/2402.06178 |
-| MusRec | 无需训练 / 流 | https://arxiv.org/abs/2511.04376 |
+本表收录已公开编辑实现与模型权重的代表性工作，各项目沿用其自身许可证。操作类别按本综述的[分类体系](#taxonomy-details)统一标注；**Unified** 收录支持多种音频模态的编辑模型，具体支持的模态在表中列明。**基础模型**链接指向编辑器使用的预训练骨干，**适配器**链接指向额外学习的权重。
+
+<a id="methods-unified"></a>
+
+#### 跨领域模型（Unified）
+
+| 模型 | 音频模态 | 编辑类别 | 模型架构 | 论文 | 代码 | 模型权重 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Audio-Omni | Speech; Music; Audio | 实例：添加、删除、提取、音源转换 | MLLM + 整流 DiT | <a href="https://arxiv.org/abs/2604.10708"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ZeyueT/Audio-Omni"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/HKUSTAudio/Audio-Omni) |
+| AudioMorphix | Speech; Music; Audio | 语义：音高／时间伸缩<br>实例：添加、删除、替换、时间移动 | 扩散 U-Net（Tango / AudioLDM） | <a href="https://arxiv.org/abs/2505.16076"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 基础模型（Tango 2）](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 基础模型（AudioLDM）](https://huggingface.co/cvssp/audioldm-l-full) |
+| AuK / AuK-Flash | Speech; Music | 声学：修复、响度<br>语义：词语、歌词、表现力<br>实例：音色、音源提取 | MLLM + 整流 DiT | <a href="https://arxiv.org/abs/2609.08936"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/Tencent-Hunyuan/AuK"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 AuK](https://huggingface.co/tencent/AuK)<br>[🤗 Flash](https://huggingface.co/tencent/AuK-Flash) |
+| Vevo2 | Speech; Music | 语义：内容、歌词、韵律、风格<br>实例：说话人／歌手转换 | 编解码语言模型 + 流匹配解码器 | <a href="https://arxiv.org/abs/2508.16332"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/open-mmlab/Amphion/tree/main/models/svc/vevo2"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/RMSnow/Vevo2) |
+| DirectAudioEdit | Music; Audio | 实例：文本引导的事件替换／添加／删除 | 扩散 U-Net（Tango 2 / AudioLDM2） | <a href="https://arxiv.org/abs/2606.07356"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NiuTrans/DirectAudioEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 基础模型（Tango 2）](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 基础模型（音效）](https://huggingface.co/cvssp/audioldm2) |
+| DDPM Inversion (ZETA) | Music; Audio | 语义：音乐风格<br>实例：乐器／声音事件变更 | 扩散 U-Net（AudioLDM2） | <a href="https://arxiv.org/abs/2402.10009"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/HilaManor/AudioEditingCode"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 基础模型（音效）](https://huggingface.co/cvssp/audioldm2)<br>[🤗 基础模型（音乐）](https://huggingface.co/cvssp/audioldm2-music) |
+
+<a id="methods-speech"></a>
+
+#### 语音模型（Speech）
+
+| 模型 | 编辑类别 | 模型架构 | 论文 | 代码 | 模型权重 |
+| --- | --- | --- | --- | --- | --- |
+| Ming-UniAudio-Edit | 声学：去噪、响度<br>语义：内容、韵律、情感、方言 | 连续 token 语言模型 + 扩散预测头 | <a href="https://arxiv.org/abs/2511.05516"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/inclusionAI/Ming-UniAudio"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/inclusionAI/Ming-UniAudio-16B-A3B-Edit) |
+| Step-Audio-EditX | 语义：情感、说话风格、副语言线索、发音 | 编解码语言模型 + 流匹配解码器 | <a href="https://arxiv.org/abs/2511.03601"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/stepfun-ai/Step-Audio-EditX"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/stepfun-ai/Step-Audio-EditX) |
+| CosyEdit | 语义：词语插入、删除、替换 | 编解码语言模型 + 流匹配解码器 | <a href="https://arxiv.org/abs/2601.05329"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/CJY1018/CosyEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/CJY/CosyEdit) |
+| VoiceCraft-X | 语义：多语言内容编辑 | 编解码语言模型（自回归填补） | <a href="https://arxiv.org/abs/2511.12347"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/zszheng147/VoiceCraft-X"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/zhisheng01/VoiceCraft-X) |
+| VoiceCraft | 语义：词语插入、删除、替换 | 编解码语言模型（自回归填补） | <a href="https://arxiv.org/abs/2403.16973"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/jasonppy/VoiceCraft"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/pyp1/VoiceCraft) |
+| SSR-Speech | 语义：词语插入、删除、替换 | 编解码语言模型（自回归填补） | <a href="https://arxiv.org/abs/2409.07556"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/WangHelin1997/SSR-Speech"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 英语](https://huggingface.co/westbrook/SSR-Speech-English)<br>[🤗 普通话](https://huggingface.co/westbrook/SSR-Speech-Mandarin) |
+| F5-TTS | 语义：局部内容替换／填补 | 流匹配 DiT | <a href="https://arxiv.org/abs/2410.06885"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/SWivid/F5-TTS/blob/main/src/f5_tts/infer/speech_edit.py"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/SWivid/F5-TTS) |
+| FluentSpeech | 语义：内容编辑、口吃与不流畅修正 | 扩散模型（上下文感知去噪器） | <a href="https://arxiv.org/abs/2305.13612"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/Zain-Jiang/Speech-Editing-Toolkit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📁 权重](https://drive.google.com/drive/folders/1saqpWc4vrSgUZvRvHkf2QbwWSikMTyoo) |
+| EdiTTS | 语义：合成语音中的内容／音高编辑 | 基于分数的扩散模型（Grad-TTS） | <a href="https://arxiv.org/abs/2110.02584"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/neosapience/editts"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📦 基础模型](https://github.com/neosapience/editts/tree/master/checkpts) |
+
+<a id="methods-music"></a>
+
+#### 音乐模型（Music）
+
+| 模型 | 编辑类别 | 模型架构 | 论文 | 代码 | 模型权重 |
+| --- | --- | --- | --- | --- | --- |
+| YingMusic-Singer-Plus | 语义：歌词<br>实例：歌手音色替换 | 流匹配 DiT | <a href="https://arxiv.org/abs/2603.24589"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ASLP-lab/YingMusic-Singer-Plus"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/ASLP-lab/YingMusic-Singer-Plus) |
+| ACE-Step 1.5 | 语义：风格／局部重绘<br>实例：音轨提取／添加（base 版本） | 语言模型 + 流匹配 DiT | <a href="https://arxiv.org/abs/2602.00744"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ace-step/ACE-Step-1.5"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Turbo](https://huggingface.co/ACE-Step/Ace-Step1.5)<br>[🤗 Base 版本](https://huggingface.co/ACE-Step/acestep-v15-base) |
+| Instruct-MusicGen | 实例：分轨添加、删除、提取 | 编解码语言模型（MusicGen）+ 适配器 | <a href="https://arxiv.org/abs/2405.18386"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ldzhangyx/instruct-MusicGen"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 公开数据重训版](https://huggingface.co/ldzhangyx/instruct-MusicGen) |
+| MusicGen-Stem | 实例：分轨替换／添加（贝斯、鼓、其他） | 多流编解码语言模型 | <a href="https://arxiv.org/abs/2501.01757"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/simonrouard/audiocraft/tree/multistem"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/facebook/musicgen-stem-6cb) |
+| MelodyFlow | 语义：流派、情绪、风格<br>实例：乐器配置 | 流匹配 DiT | <a href="https://arxiv.org/abs/2407.03648"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/facebook/MelodyFlow/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 权重](https://huggingface.co/facebook/melodyflow-t24-30secs) |
+| AP-Adapter | 语义：流派／风格转换<br>实例：乐器替换 | 扩散 U-Net + 音频提示适配器 | <a href="https://arxiv.org/abs/2407.16564"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/fundwotsai2001/AP-adapter"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📁 适配器](https://drive.google.com/drive/folders/1LkIe3-_4nqvDJQqEgglbyj9AMFkn0TLd)<br>[🤗 基础模型](https://huggingface.co/cvssp/audioldm2-large) |
+| AnchorSteer | 语义：流派／风格<br>实例：乐器变更 | 扩散 DiT + 结构／概念适配器 | <a href="https://arxiv.org/abs/2605.31053"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/hengtsune1024/AnchorSteer"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 概念权重](https://huggingface.co/heng1024/AnchorSteer-weights)<br>[📁 结构适配器](https://drive.google.com/drive/folders/1Q9B333jcq1czA11JKTbM-DHANJ8YqGbP)<br>[🤗 基础模型（需接受条款）](https://huggingface.co/stabilityai/stable-audio-open-1.0) |
+
+<a id="methods-audio"></a>
+
+#### 通用音频模型（Audio）
+
+| 模型 | 编辑类别 | 模型架构 | 论文 | 代码 | 模型权重 |
+| --- | --- | --- | --- | --- | --- |
+| MMEdit | 声学：响度<br>实例：事件添加、删除、替换、重排 | 音频语言模型 + 扩散 MMDiT | <a href="https://arxiv.org/abs/2512.20339"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ty0402/MMEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/CocoBro/MMEdit) |
+| SAO-Instruct | 声学：滤波、去噪、修复<br>语义：音高／速率<br>实例：事件操作 | 扩散 DiT（Stable Audio Open） | <a href="https://arxiv.org/abs/2510.22795"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/ETH-DISCO/sao-instruct"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/disco-eth/sao-instruct) |
+| SmartDJ-Editor | 声学：音量、混响、频谱色彩<br>实例：事件添加、删除、提取、位置调整 | 扩散 Transformer（U-DiT） | <a href="https://arxiv.org/abs/2509.21625"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/penn-waves-lab/SmartDJ"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 编辑器权重](https://huggingface.co/ztlan/SmartDJ) |
+| AudioEditor | 实例：事件添加、删除、替换 | 扩散 U-Net（Auffusion） | <a href="https://arxiv.org/abs/2409.12466"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NKU-HLT/AudioEditor"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 基础模型](https://huggingface.co/auffusion/auffusion-full-no-adapter) |
+| CoherentAVEdit | 实例：视频条件下的声音事件替换 | 流匹配 Transformer（MMAudio） | <a href="https://arxiv.org/abs/2512.07209"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/SonyResearch/CoherentAVEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 权重](https://huggingface.co/masato-a-ishii/CoherentAVEdit) |
 
 ---
 
