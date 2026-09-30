@@ -61,18 +61,18 @@
    - [분류 체계 상세](#taxonomy-details)
    - [대표적인 오디오 편집 방법](#representative-audio-editing-methods)
      - [Unified](#methods-unified) · [Speech](#methods-speech) · [Music](#methods-music) · [Audio](#methods-audio)
-3. [오디오 편집을 위한 파운데이션 모델](#foundation-models-for-audio-editing)
-4. [학습 기반 오디오 편집](#training-based-audio-editing)
-5. [추가 학습 없는 오디오 편집](#training-free-audio-editing)
-6. [자원](#resources)
+3. [학습 기반 오디오 편집](#training-based-audio-editing)
+4. [추가 학습 없는 오디오 편집](#training-free-audio-editing)
+   - [대표적인 추가 학습 없는 편집 방법](#representative-training-free-methods)
+5. [자원](#resources)
    - [공개 데이터셋](#available-datasets)
      - [음성](#speech) · [음악](#music) · [일반 오디오](#audio) · [통합](#unified)
    - [데이터 도구](#data-tools)
    - [평가 벤치마크](#benchmarks)
    - [평가 지표](#evaluation-metrics)
-7. [과제와 향후 연구 방향](#challenges-and-future-directions)
-8. [인용](#citation)
-9. [기여하기](#contributing)
+6. [과제와 향후 연구 방향](#challenges-and-future-directions)
+7. [인용](#citation)
+8. [기여하기](#contributing)
 
 ---
 
@@ -179,28 +179,6 @@
 
 ---
 
-<a id="foundation-models-for-audio-editing"></a>
-
-## 🏗️ 오디오 편집을 위한 파운데이션 모델
-
-### 1. 초기 신경망 기반 편집 모델
-
-파운데이션 모델 시대 이전의 초기 신경망 기반 오디오 편집 연구는 주로 특정 작업을 위한 생성 모델을 통해 국소적인 복원과 속성 제어를 탐구했습니다.
-
-### 2. 토큰 기반 오디오 코덱 언어 모델
-
-토큰 기반 오디오 코덱 언어 모델은 오디오 편집을 이산 오디오 토큰의 조건부 생성으로 다룹니다. 연속 오디오를 압축된 이산 토큰 시퀀스로 변환한 뒤, 문맥·프롬프트·작업 제어 신호를 조건으로 자기회귀적 이어 생성, 빈 구간 채우기 또는 선택적 재생성을 수행하여 대상 구간을 편집합니다.
-
-### 3. 확산 및 플로 매칭 모델
-
-확산 모델과 플로 매칭 모델은 멜 스펙트로그램이나 오디오 잠재 표현과 같은 연속 음향 공간에서 오디오 편집을 조건부 변환으로 정식화합니다. 이산 토큰을 채우는 대신 조건부 잡음 제거, 잠재 공간 역변환 또는 연속 흐름 변환으로 오디오를 수정하므로, 복잡한 상황에서의 고충실도 복원, 구간 단위 정밀 수정, 세밀한 음향 제어에 적합합니다.
-
-### 4. 오디오 편집 인터페이스
-
-지시 조건 인터페이스와 멀티모달 인터페이스는 파운데이션 모델 기반 오디오 편집에 고수준 제어 수단을 제공합니다. 사용자는 자연어 지시, 작업 프롬프트, 참조 오디오, 시간 구간 또는 시각적 단서로 편집 의도를 지정할 수 있습니다. 이러한 입력은 대상 구간, 작업 임베딩, 이벤트 위치, 참조 화자 정보 또는 보존 제약으로 변환됩니다.
-
----
-
 <a id="training-based-audio-editing"></a>
 
 ## 🧪 학습 기반 오디오 편집
@@ -229,7 +207,7 @@
 
 ## 🪄 추가 학습 없는 오디오 편집
 
-추가 학습이 필요 없는 오디오 편집 방법은 모델 파라미터를 갱신하지 않고 사전 학습된 오디오 생성 모델을 편집에 활용합니다. 역변환, 어텐션 제어, 프롬프트·가이던스 조정, 마스크 기반 제약 등 추론 단계의 메커니즘을 조작합니다. 기존 방법을 세 가지 일반적인 메커니즘으로 나누며, 이들은 위치 지정, 보존 성능, 제어 가능성을 높이기 위해 함께 사용되기도 합니다. 토큰 기반 자기회귀 모델은 추가 학습 없는 편집에 상대적으로 덜 적합하므로, 이 절에서는 비자기회귀 패러다임, 특히 확산 기반 파운데이션 모델에 초점을 맞춥니다.
+추가 학습이 필요 없는 오디오 편집 방법은 모델 파라미터를 갱신하지 않고 사전 학습된 오디오 생성 모델을 편집에 활용합니다. 역변환, 어텐션 제어, 프롬프트·가이던스 조정, 마스크 기반 제약 등 추론 단계의 메커니즘을 조작합니다. 기존 방법을 다음과 같은 메커니즘으로 나누며, 이들은 위치 지정, 보존 성능, 제어 가능성을 높이기 위해 함께 사용되기도 합니다. 토큰 기반 자기회귀 모델은 추가 학습 없는 편집에 상대적으로 덜 적합하므로, 이 절에서는 비자기회귀 패러다임, 특히 확산 기반 파운데이션 모델에 초점을 맞춥니다.
 
 <p align="center">
   <img src="assets/train-free.png" alt="추가 학습 없는 오디오 편집 방법 개요" width="900">
@@ -248,7 +226,18 @@
 | 마스크·구간 유도 편집 | 파형, 스펙트로그램, 잠재 표현 또는 음원 성분 공간에서 편집할 영역과 보존할 영역을 지정합니다. | 국소 편집, 인페인팅, 복원, 음원 단위 조작 |
 | 코덱 모델을 이용한 토큰 단위 편집 | 추론 시 마스킹, 빈 구간 채우기, 이어 생성 또는 선택적 재생성으로 이산 오디오 토큰을 조작합니다. | 음성 인필링, 국소 재합성, 코덱 토큰 편집 |
 
+<a id="representative-training-free-methods"></a>
 
+### 대표적인 추가 학습 없는 편집 방법
+
+| 모델 | 학회 / 학술지 | 오디오 유형 | 편집 유형 | 모델 구조 | 논문 | 코드 | 모델 가중치 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| DirectAudioEdit | - | Music; Audio | 인스턴스: 텍스트 기반 이벤트 교체·추가·삭제 | 확산 U-Net(Tango 2 / AudioLDM2) | <a href="https://arxiv.org/abs/2606.07356"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NiuTrans/DirectAudioEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 기반 모델(Tango 2)](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 기반 모델(일반 오디오)](https://huggingface.co/cvssp/audioldm2) |
+| AudioMorphix | - | Speech; Music; Audio | 의미: 음높이·시간 신축<br>인스턴스: 추가·삭제·교체·시간 이동 | 확산 U-Net(Tango / AudioLDM) | <a href="https://arxiv.org/abs/2505.16076"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 기반 모델(Tango 2)](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 기반 모델(AudioLDM)](https://huggingface.co/cvssp/audioldm-l-full) |
+| AudioEditor | ICASSP 2025 | Audio | 인스턴스: 이벤트 추가·삭제·교체 | 확산 U-Net(Auffusion) | <a href="https://arxiv.org/abs/2409.12466"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NKU-HLT/AudioEditor"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 기반 모델](https://huggingface.co/auffusion/auffusion-full-no-adapter) |
+| MelodyFlow | NeurIPS 2024<br>Audio Imagination Workshop | Music | 의미: 장르·분위기·스타일<br>인스턴스: 악기 구성 | 플로 매칭 DiT | <a href="https://arxiv.org/abs/2407.03648"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/facebook/MelodyFlow/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 기반 모델](https://huggingface.co/facebook/melodyflow-t24-30secs) |
+| DDPM Inversion (ZETA) | ICML 2024 | Music; Audio | 의미: 음악 스타일<br>인스턴스: 악기·소리 이벤트 변경 | 확산 U-Net(AudioLDM2) | <a href="https://arxiv.org/abs/2402.10009"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/HilaManor/AudioEditingCode"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 기반 모델(일반 오디오)](https://huggingface.co/cvssp/audioldm2)<br>[🤗 기반 모델(음악)](https://huggingface.co/cvssp/audioldm2-music) |
+| EdiTTS | INTERSPEECH 2022 | Speech | 의미: 합성 음성의 내용·음높이 편집 | 스코어 기반 확산(Grad-TTS) | <a href="https://arxiv.org/abs/2110.02584"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/neosapience/editts"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📦 기반 모델](https://github.com/neosapience/editts/tree/master/checkpts) |
 
 ---
 

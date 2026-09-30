@@ -61,18 +61,18 @@ This repository is the official repository for **Audio Editing in the Era of Fou
    - [Taxonomy Details](#taxonomy-details)
    - [Representative Audio Editing Methods](#representative-audio-editing-methods)
      - [Unified](#methods-unified) · [Speech](#methods-speech) · [Music](#methods-music) · [Audio](#methods-audio)
-3. [Foundation Models for Audio Editing](#foundation-models-for-audio-editing)
-4. [Training-based Audio Editing](#training-based-audio-editing)
-5. [Training-free Audio Editing](#training-free-audio-editing)
-6. [Resources](#resources)
+3. [Training-based Audio Editing](#training-based-audio-editing)
+4. [Training-free Audio Editing](#training-free-audio-editing)
+   - [Representative Training-free Methods](#representative-training-free-methods)
+5. [Resources](#resources)
    - [Available Datasets](#available-datasets)
      - [Speech](#speech) · [Music](#music) · [Audio](#audio) · [Unified](#unified)
    - [Data Tools](#data-tools)
    - [Benchmarks](#benchmarks)
    - [Evaluation Metrics](#evaluation-metrics)
-7. [Challenges and Future Directions](#challenges-and-future-directions)
-8. [Citation](#citation)
-9. [Contributing](#contributing)
+6. [Challenges and Future Directions](#challenges-and-future-directions)
+7. [Citation](#citation)
+8. [Contributing](#contributing)
 
 ---
 
@@ -179,28 +179,6 @@ Representative editors with publicly released implementations and model weights,
 
 ---
 
-<a id="foundation-models-for-audio-editing"></a>
-
-## 🏗️ Foundation Models for Audio Editing
-
-### 1. Early Neural Editing Models
-
-Before the foundation-model era, early neural audio editing methods mainly explored task-specific generative models for local reconstruction and attribute control. 
-
-### 2. Token-based Codec Language Models
-
-Token-based codec language models cast audio editing as conditional generation over discrete audio tokens. After continuous audio is converted into compact discrete token sequences, target regions are edited through autoregressive continuation, infilling, or selective regeneration conditioned on context, prompts, or task controls.
-
-### 3. Diffusion and Flow-Matching Models
-
-Diffusion and flow-matching models formulate audio editing as conditional transformation in continuous acoustic spaces, such as mel-spectrograms or audio latents. Instead of infilling discrete tokens, they modify audio through conditional denoising, latent inversion, or continuous flow transformation, making them suitable for high-fidelity reconstruction, region-level refinement, and fine-grained acoustic control in complex scenarios.
-
-### 4. Audio Editing Interfaces
-
-Instruction-conditioned and multimodal interfaces for audio editing provide high-level control for foundation-model-based audio editing. They allow users to specify editing intents through natural language instructions, task prompts, reference audio, temporal regions, or visual cues, which are shifted into target spans, task embeddings, event locations, speaker references, or preservation constraints.
-
----
-
 <a id="training-based-audio-editing"></a>
 
 ## 🧪 Training-based Audio Editing
@@ -229,7 +207,7 @@ Training-based approaches refer to audio editing methods that learn editing beha
 
 ## 🪄 Training-free Audio Editing
 
-Training-free approaches adapt pretrained audio generative models to editing without parameter updates. They operate by manipulating inference-time mechanisms, such as inversion, attention control, prompt or guidance adjustment, and mask-based constraints. We group existing methods into three common categories, which are often combined to improve localization, preservation, and controllability. Since token-based autoregressive models are less naturally suited to training-free editing, this section mainly focuses on non-autoregressive paradigms, especially diffusion-based foundation models.
+Training-free approaches adapt pretrained audio generative models to editing without parameter updates. They operate by manipulating inference-time mechanisms, such as inversion, attention control, prompt or guidance adjustment, and mask-based constraints. We group existing methods into the following categories, which are often combined to improve localization, preservation, and controllability. Since token-based autoregressive models are less naturally suited to training-free editing, this section mainly focuses on non-autoregressive paradigms, especially diffusion-based foundation models.
 
 <p align="center">
   <img src="assets/train-free.png" alt="Overview of training-free audio editing methods" width="900">
@@ -248,7 +226,18 @@ Training-free approaches adapt pretrained audio generative models to editing wit
 | Mask- and Region-Guided Editing | Specifies where to edit and where to preserve the source audio in waveform, spectrogram, latent, or source-component spaces. | localized editing, inpainting, restoration, source-level manipulation |
 | Token-Level Editing with Codec Models | Manipulates discrete audio tokens through masking, infilling, continuation, or selective regeneration at inference time. | speech infilling, localized resynthesis, codec-token editing |
 
+<a id="representative-training-free-methods"></a>
 
+### Representative Training-free Methods
+
+| Model | Conference / Journal | Audio Domain | Editing Types | Model Architecture | Paper | Code | Model |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| DirectAudioEdit | - | Music; Audio | Instance: text-guided event replacement / addition / removal | Diffusion U-Net (Tango 2 / AudioLDM2) | <a href="https://arxiv.org/abs/2606.07356"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NiuTrans/DirectAudioEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Base (Tango 2)](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 Base (audio)](https://huggingface.co/cvssp/audioldm2) |
+| AudioMorphix | - | Speech; Music; Audio | Semantic: pitch / time stretching<br>Instance: addition, removal, replacement, time shifting | Diffusion U-Net (Tango / AudioLDM) | <a href="https://arxiv.org/abs/2505.16076"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 Base (Tango 2)](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 Base (AudioLDM)](https://huggingface.co/cvssp/audioldm-l-full) |
+| AudioEditor | ICASSP 2025 | Audio | Instance: event addition, deletion, replacement | Diffusion U-Net (Auffusion) | <a href="https://arxiv.org/abs/2409.12466"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NKU-HLT/AudioEditor"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Base](https://huggingface.co/auffusion/auffusion-full-no-adapter) |
+| MelodyFlow | NeurIPS 2024<br>Audio Imagination Workshop | Music | Semantic: genre, mood, style<br>Instance: instrumentation | Flow-matching DiT | <a href="https://arxiv.org/abs/2407.03648"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/facebook/MelodyFlow/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 Base](https://huggingface.co/facebook/melodyflow-t24-30secs) |
+| DDPM Inversion (ZETA) | ICML 2024 | Music; Audio | Semantic: musical style<br>Instance: instrument / sound-event changes | Diffusion U-Net (AudioLDM2) | <a href="https://arxiv.org/abs/2402.10009"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/HilaManor/AudioEditingCode"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 Base (audio)](https://huggingface.co/cvssp/audioldm2)<br>[🤗 Base (music)](https://huggingface.co/cvssp/audioldm2-music) |
+| EdiTTS | INTERSPEECH 2022 | Speech | Semantic: content / pitch edits in synthesized speech | Score-based diffusion (Grad-TTS) | <a href="https://arxiv.org/abs/2110.02584"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/neosapience/editts"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📦 Base](https://github.com/neosapience/editts/tree/master/checkpts) |
 
 ---
 

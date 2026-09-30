@@ -61,18 +61,18 @@
    - [分类体系详解](#taxonomy-details)
    - [代表性音频编辑方法](#representative-audio-editing-methods)
      - [Unified](#methods-unified) · [Speech](#methods-speech) · [Music](#methods-music) · [Audio](#methods-audio)
-3. [用于音频编辑的基础模型](#foundation-models-for-audio-editing)
-4. [需要训练的音频编辑](#training-based-audio-editing)
-5. [无需训练的音频编辑](#training-free-audio-editing)
-6. [资源](#resources)
+3. [需要训练的音频编辑](#training-based-audio-editing)
+4. [无需训练的音频编辑](#training-free-audio-editing)
+   - [代表性无需训练的编辑方法](#representative-training-free-methods)
+5. [资源](#resources)
    - [可用数据集](#available-datasets)
      - [语音](#speech) · [音乐](#music) · [通用音频](#audio) · [跨领域](#unified)
    - [数据工具](#data-tools)
    - [评测基准](#benchmarks)
    - [评测指标](#evaluation-metrics)
-7. [挑战与未来方向](#challenges-and-future-directions)
-8. [引用](#citation)
-9. [参与贡献](#contributing)
+6. [挑战与未来方向](#challenges-and-future-directions)
+7. [引用](#citation)
+8. [参与贡献](#contributing)
 
 ---
 
@@ -179,28 +179,6 @@
 
 ---
 
-<a id="foundation-models-for-audio-editing"></a>
-
-## 🏗️ 用于音频编辑的基础模型
-
-### 1. 早期神经编辑模型
-
-在基础模型时代之前，早期神经音频编辑方法主要探索面向特定任务的生成模型，用于局部重建和属性控制。
-
-### 2. 基于 token 的音频编解码语言模型
-
-基于离散 token 的音频编解码语言模型，将音频编辑视为离散音频 token 上的条件生成。在连续音频被转换为紧凑的离散 token 序列后，模型根据上下文、提示或任务控制信号，通过自回归续写、片段填补或选择性重新生成来编辑目标区域。
-
-### 3. 扩散与流匹配模型
-
-扩散模型和流匹配模型将音频编辑表述为梅尔频谱或音频潜在表示等连续声学空间中的条件变换。它们通过条件去噪、潜在表示反演或连续流变换修改音频，而非填补离散 token，因此适用于复杂场景中的高保真重建、区域级精修和细粒度声学控制。
-
-### 4. 音频编辑接口
-
-指令条件接口和多模态接口为基于基础模型的音频编辑提供高层次控制。用户可以通过自然语言指令、任务提示、参考音频、时间区域或视觉线索表达编辑意图；系统再将这些输入转换为目标片段、任务嵌入、事件位置、说话人参考或保留约束。
-
----
-
 <a id="training-based-audio-editing"></a>
 
 ## 🧪 需要训练的音频编辑
@@ -229,7 +207,7 @@
 
 ## 🪄 无需训练的音频编辑
 
-无需训练的音频编辑方法在不更新参数的情况下，将预训练音频生成模型用于编辑。它们通过反演、注意力控制、提示或引导调整，以及基于掩码的约束等推理时机制完成编辑。我们将现有方法归纳为三类常见机制，这些机制通常会组合使用，以提升定位、内容保留和可控性。由于基于 token 的自回归模型较难直接用于无需训练的编辑，本节主要聚焦非自回归范式，尤其是基于扩散的基础模型。
+无需训练的音频编辑方法在不更新参数的情况下，将预训练音频生成模型用于编辑。它们通过反演、注意力控制、提示或引导调整，以及基于掩码的约束等推理时机制完成编辑。我们将现有方法归纳为以下常见机制，这些机制通常会组合使用，以提升定位、内容保留和可控性。由于基于 token 的自回归模型较难直接用于无需训练的编辑，本节主要聚焦非自回归范式，尤其是基于扩散的基础模型。
 
 <p align="center">
   <img src="assets/train-free.png" alt="无需训练的音频编辑方法概览" width="900">
@@ -248,7 +226,18 @@
 | 掩码与区域引导编辑 | 在波形、频谱、潜在表示或音源成分空间中，指定编辑区域与保留区域。 | 局部编辑、音频补全、修复、音源级操作 |
 | 基于编解码模型的 token 级编辑 | 在推理时通过掩码、填补、续写或选择性重新生成来操作离散音频 token。 | 语音填补、局部重新合成、编解码 token 编辑 |
 
+<a id="representative-training-free-methods"></a>
 
+### 代表性无需训练的编辑方法
+
+| 模型 | 会议 / 期刊 | 音频模态 | 编辑类别 | 模型架构 | 论文 | 代码 | 模型权重 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| DirectAudioEdit | - | Music; Audio | 实例：文本引导的事件替换／添加／删除 | 扩散 U-Net（Tango 2 / AudioLDM2） | <a href="https://arxiv.org/abs/2606.07356"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NiuTrans/DirectAudioEdit"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 基础模型（Tango 2）](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 基础模型（音效）](https://huggingface.co/cvssp/audioldm2) |
+| AudioMorphix | - | Speech; Music; Audio | 语义：音高／时间伸缩<br>实例：添加、删除、替换、时间移动 | 扩散 U-Net（Tango / AudioLDM） | <a href="https://arxiv.org/abs/2505.16076"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 基础模型（Tango 2）](https://huggingface.co/declare-lab/tango2-full)<br>[🤗 基础模型（AudioLDM）](https://huggingface.co/cvssp/audioldm-l-full) |
+| AudioEditor | ICASSP 2025 | Audio | 实例：事件添加、删除、替换 | 扩散 U-Net（Auffusion） | <a href="https://arxiv.org/abs/2409.12466"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/NKU-HLT/AudioEditor"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 基础模型](https://huggingface.co/auffusion/auffusion-full-no-adapter) |
+| MelodyFlow | NeurIPS 2024<br>Audio Imagination Workshop | Music | 语义：流派、情绪、风格<br>实例：乐器配置 | 流匹配 DiT | <a href="https://arxiv.org/abs/2407.03648"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://huggingface.co/spaces/facebook/MelodyFlow/tree/main"><img height="20" src="https://img.shields.io/badge/HuggingFace-Code-FFD21E?logo=huggingface&amp;logoColor=black" alt="HuggingFace Code"></a> | [🤗 基础模型](https://huggingface.co/facebook/melodyflow-t24-30secs) |
+| DDPM Inversion (ZETA) | ICML 2024 | Music; Audio | 语义：音乐风格<br>实例：乐器／声音事件变更 | 扩散 U-Net（AudioLDM2） | <a href="https://arxiv.org/abs/2402.10009"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/HilaManor/AudioEditingCode"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [🤗 基础模型（音效）](https://huggingface.co/cvssp/audioldm2)<br>[🤗 基础模型（音乐）](https://huggingface.co/cvssp/audioldm2-music) |
+| EdiTTS | INTERSPEECH 2022 | Speech | 语义：合成语音中的内容／音高编辑 | 基于分数的扩散模型（Grad-TTS） | <a href="https://arxiv.org/abs/2110.02584"><img height="20" src="https://img.shields.io/badge/arXiv-Paper-brightgreen" alt="arXiv Paper"></a> | <a href="https://github.com/neosapience/editts"><img height="20" src="https://img.shields.io/badge/GitHub-Code-181717?logo=github&amp;logoColor=white" alt="GitHub Code"></a> | [📦 基础模型](https://github.com/neosapience/editts/tree/master/checkpts) |
 
 ---
 
