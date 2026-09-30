@@ -55,25 +55,24 @@ This repository is the official repository for **Audio Editing in the Era of Fou
 
 ## Contents
 
-1. [Introduction](#introduction)  
-2. [Scope](#scope)  
-3. [Overall](#overall)  
-   - [Taxonomy Overview](#taxonomy-overview)  
-   - [Taxonomy Details](#taxonomy-details)  
-   - [Representative Audio Editing Methods](#representative-audio-editing-methods)  
+1. [Introduction](#introduction)
+2. [Overall](#overall)
+   - [Taxonomy Overview](#taxonomy-overview)
+   - [Taxonomy Details](#taxonomy-details)
+   - [Representative Audio Editing Methods](#representative-audio-editing-methods)
      - [Unified](#methods-unified) · [Speech](#methods-speech) · [Music](#methods-music) · [Audio](#methods-audio)
-4. [Foundation Models for Audio Editing](#foundation-models-for-audio-editing)  
-5. [Training-based Audio Editing](#training-based-audio-editing)  
-6. [Training-free Audio Editing](#training-free-audio-editing)  
-7. [Resources](#resources)  
-   - [Available Datasets](#available-datasets)  
+3. [Foundation Models for Audio Editing](#foundation-models-for-audio-editing)
+4. [Training-based Audio Editing](#training-based-audio-editing)
+5. [Training-free Audio Editing](#training-free-audio-editing)
+6. [Resources](#resources)
+   - [Available Datasets](#available-datasets)
      - [Speech](#speech) · [Music](#music) · [Audio](#audio) · [Unified](#unified)
-   - [Data Tools](#data-tools)  
+   - [Data Tools](#data-tools)
    - [Benchmarks](#benchmarks)
    - [Evaluation Metrics](#evaluation-metrics)
-8. [Challenges and Future Directions](#challenges-and-future-directions)  
-9. [Citation](#citation)
-10. [Contributing](#contributing)
+7. [Challenges and Future Directions](#challenges-and-future-directions)
+8. [Citation](#citation)
+9. [Contributing](#contributing)
 
 ---
 
@@ -81,19 +80,12 @@ This repository is the official repository for **Audio Editing in the Era of Fou
 
 ## 📌 Introduction
 
-This is the official repository for **[Audio Editing in the Era of Foundation Models: A Survey](https://arxiv.org/abs/2606.23139)**, accepted to **AACL-IJCNLP 2026**. It is maintained by **MM-Speech** and collects papers and resources for foundation-model-based audio editing.
+**Awesome Audio Editing** is a curated resource for foundation-model-based audio editing across **speech, music, and general audio**. Based on our [survey](https://arxiv.org/abs/2606.23139), this repository connects editing tasks with model design, learning strategies, and practical resources:
 
-> **Abstract**  
-> Audio editing aims to modify a given synthetic or real-world audio signal to meet users' specific needs. As a promising yet challenging direction in AIGC, it has attracted increasing attention in recent years. With the rapid progress of text-to-audio and text-to-speech generation, powerful audio generation models have become the primary foundation for modern audio editing systems. In this survey, we provide a comprehensive review of foundation-model-based audio editing. We first define the scope of audio editing from a unified perspective and present a detailed taxonomy of existing editing tasks. We then summarize the major foundation-model paradigms for audio editing, and review representative approaches from both training-based and training-free perspectives. In addition, we systematically discuss related resources, including datasets, data construction tools, and evaluation protocols. Finally, we identify open challenges in this field and outline promising directions for future research.
-
----
-
-<a id="scope"></a>
-
-## 🎯 Scope
-
-In this survey, we focus on works that make direct contributions to audio editing in the era of foundation models. To ensure a precise and focused discussion, we adopt two main inclusion criteria: (1) the task should center on audio editing, which we define as modifying the acoustic attributes, instances, or content of an existing audio recording, without transformations so substantial that they amount to generating an entirely new audio sample; (2) the method should rely on mainstream audio foundation model paradigms.
-Accordingly, we do not cover works primarily focused on audio generation, nor do we provide an extensive discussion of signal-processing-based audio editing methods. In addition, to maintain a focused scope, spatial audio (multi-channel formats such as binaural stereo and first-order Ambisonics (FOA)) and related editing techniques are beyond the main scope of this survey.
+- **Task taxonomy.** We establish a unified framework of **acoustic, semantic, and instance editing**, clarifying what each task changes and what it should preserve.
+- **Model architectures.** We review **codec language models, diffusion models, and flow-matching models**, linking their audio representations and generation mechanisms to the editing operations they support.
+- **Training methods.** We distinguish **training-based** methods that learn editing from data from **training-free** methods that steer pretrained generators without parameter updates, and organize them by their core technical mechanisms.
+- **Public resources.** We curate **publicly available editing models, datasets, data generation and annotation tools, benchmarks, and evaluation metrics**, with resource links and capability summaries to support research and implementation.
 
 ---
 

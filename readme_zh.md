@@ -56,24 +56,23 @@
 ## 目录
 
 1. [简介](#introduction)
-2. [研究范围](#scope)
-3. [总览](#overall)
+2. [总览](#overall)
    - [分类体系概览](#taxonomy-overview)
    - [分类体系详解](#taxonomy-details)
    - [代表性音频编辑方法](#representative-audio-editing-methods)
      - [Unified](#methods-unified) · [Speech](#methods-speech) · [Music](#methods-music) · [Audio](#methods-audio)
-4. [用于音频编辑的基础模型](#foundation-models-for-audio-editing)
-5. [需要训练的音频编辑](#training-based-audio-editing)
-6. [无需训练的音频编辑](#training-free-audio-editing)
-7. [资源](#resources)
+3. [用于音频编辑的基础模型](#foundation-models-for-audio-editing)
+4. [需要训练的音频编辑](#training-based-audio-editing)
+5. [无需训练的音频编辑](#training-free-audio-editing)
+6. [资源](#resources)
    - [可用数据集](#available-datasets)
      - [语音](#speech) · [音乐](#music) · [通用音频](#audio) · [跨领域](#unified)
    - [数据工具](#data-tools)
    - [评测基准](#benchmarks)
    - [评测指标](#evaluation-metrics)
-8. [挑战与未来方向](#challenges-and-future-directions)
-9. [引用](#citation)
-10. [参与贡献](#contributing)
+7. [挑战与未来方向](#challenges-and-future-directions)
+8. [引用](#citation)
+9. [参与贡献](#contributing)
 
 ---
 
@@ -81,19 +80,12 @@
 
 ## 📌 简介
 
-本仓库是 **[Audio Editing in the Era of Foundation Models: A Survey](https://arxiv.org/abs/2606.23139)** 的官方仓库，论文已被 **AACL-IJCNLP 2026** 接收。仓库由 **MM-Speech** 维护，收集基于基础模型的音频编辑相关论文与资源。
+**Awesome Audio Editing** 汇集了基于基础模型的音频编辑研究与资源，覆盖**语音、音乐和通用音频**。本仓库以我们的[综述论文](https://arxiv.org/abs/2606.23139)为基础，串联编辑任务、模型设计、学习策略与实践资源：
 
-> **摘要**  
-> 音频编辑旨在根据用户的具体需求，修改给定的合成或真实世界音频信号。作为 AIGC 中前景广阔但充满挑战的研究方向，音频编辑近年来受到越来越多的关注。随着文本到音频和文本到语音生成技术的快速发展，强大的音频生成模型已成为现代音频编辑系统的主要基础。本综述全面回顾了基于基础模型的音频编辑研究。我们首先从统一视角界定音频编辑的范围，并详细划分现有编辑任务；随后总结音频编辑的主要基础模型范式，从需要训练与无需训练两个角度梳理代表性方法。此外，我们系统讨论了数据集、数据构建工具和评测协议等相关资源。最后，我们分析该领域尚待解决的挑战，并展望未来值得探索的研究方向。
-
----
-
-<a id="scope"></a>
-
-## 🎯 研究范围
-
-本综述聚焦于在基础模型时代对音频编辑作出直接贡献的研究。为保证讨论准确且聚焦，我们采用两项主要纳入标准：（1）任务应以音频编辑为核心，即修改已有音频的声学属性、实例或内容，且变化幅度不应大到相当于生成全新的音频样本；（2）方法应基于主流音频基础模型范式。
-因此，我们不纳入主要面向音频生成的工作，也不对基于信号处理的音频编辑方法作全面讨论。此外，为保持研究范围聚焦，空间音频（如双耳立体声和一阶 Ambisonics（FOA）等多通道音频格式）及其相关编辑技术不属于本综述的主要讨论范围。
+- **任务分类。** 我们建立了**声学、语义和实例编辑**的统一分类体系，明确各类任务需要修改的目标与应当保留的内容。
+- **模型架构。** 我们梳理了**音频编解码语言模型、扩散模型和流匹配模型**，分析其音频表示与生成机制如何支持不同编辑操作。
+- **训练方法。** 我们区分从数据中学习编辑能力的**需要训练的方法**，以及不更新参数、在推理时控制预训练生成模型的**无需训练的方法**，并按核心技术机制组织代表性工作。
+- **公开资源。** 我们整理了**公开可用的编辑模型、数据集、数据生成与标注工具、评测基准和指标**，提供资源链接与能力概览，支持研究与实践。
 
 ---
 
