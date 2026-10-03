@@ -49,6 +49,7 @@ This repository is the official repository for **Audio Editing in the Era of Fou
 
 # 🔥What's new
 
+- 🚀 **[2026/10] We have released the official [Project Page](https://david-pigeon.github.io/audioeditsurvey_project/)!**
 - 📦 **[2026/09] This repository has moved to [`MM-Speech/AudioEditSurvey`](https://github.com/MM-Speech/AudioEditSurvey) for better management.**
 - 🏆 **[2026/09] Our paper has been accepted to the AACL-IJCNLP 2026!**
 - 🎉 **[2026/06] We have officially released this survey repository for Audio Editing Models, with the preprint available on [arXiv](https://arxiv.org/abs/2606.23139).**

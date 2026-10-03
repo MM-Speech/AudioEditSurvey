@@ -49,6 +49,7 @@
 
 # 🔥 最新动态
 
+- 🚀 **[2026/10] 我们正式发布了[官方项目主页](https://david-pigeon.github.io/audioeditsurvey_project/)！**
 - 📦 **[2026/09] 本仓库已迁移至 [`MM-Speech/AudioEditSurvey`](https://github.com/MM-Speech/AudioEditSurvey)，以便更好地维护与管理。**
 - 🏆 **[2026/09] 我们的论文已被 AACL-IJCNLP 2026 接收！**
 - 🎉 **[2026/06] 音频编辑模型综述仓库正式发布，论文预印本已在 [arXiv](https://arxiv.org/abs/2606.23139) 上公开。**

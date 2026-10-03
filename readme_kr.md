@@ -49,6 +49,7 @@
 
 # 🔥 새로운 소식
 
+- 🚀 **[2026/10] [공식 프로젝트 페이지](https://david-pigeon.github.io/audioeditsurvey_project/)를 공개했습니다!**
 - 📦 **[2026/09] 원활한 유지·관리를 위해 저장소를 [`MM-Speech/AudioEditSurvey`](https://github.com/MM-Speech/AudioEditSurvey)로 이전했습니다.**
 - 🏆 **[2026/09] 논문이 AACL-IJCNLP 2026에 채택되었습니다!**
 - 🎉 **[2026/06] 오디오 편집 모델 서베이 저장소를 공식 공개했습니다. 논문 프리프린트는 [arXiv](https://arxiv.org/abs/2606.23139)에서 확인할 수 있습니다.**
