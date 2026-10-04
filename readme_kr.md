@@ -30,6 +30,10 @@
   <a href="https://github.com/MM-Speech/AudioEditSurvey/stargazers"><img src="https://img.shields.io/github/stars/MM-Speech/AudioEditSurvey?style=social" alt="GitHub stars"></a>
 </p>
 
+<p align="center">
+  <img src="assets/awesome-audio-editing.png" alt="Awesome Audio Editing" width="720">
+</p>
+
 ### 🌐 Languages
 
 [English](README.md) · [简体中文](readme_zh.md) · [한국어](readme_kr.md)
